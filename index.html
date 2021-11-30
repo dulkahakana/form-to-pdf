@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Бриф на разработку логотипа</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <div id="brief-content" class="brief-content">
+
+            <form id="bried-form" class="brief-form__body" action="#" method="post">
+
+                <h1 class="brief-title">Бриф на разработку логотипа</h1>
+
+                <div class="brief-form__item">
+                    <label for="companyName" class="brief-form__label">1. НАЗВАНИЕ КОМПАНИИ/ПРОДУКТА, КОТОРОЕ ДОЛЖНО БЫТЬ НЕПОСРЕДСТВЕННО ОТРАЖЕНО В ЛОГОТИПЕ <span class="clarification">(уточните, если необходимы варианты и на кириллице, и на латинице)</span>:*</label>
+                    <input type="text" id="companyName" class="brief-form__input">
+                </div>
+
+                <div class="brief-form__item">
+                    <label for="aboutCompany" class="brief-form__label">2. ОСНОВНЫЕ НАПРАВЛЕНИЯ ДЕЯТЕЛЬНОСТИ КОМПАНИИ/ОПИСАНИЕ ПРОДУКТА:*</label>
+                    <textarea id="aboutCompany" class="brief-form__input" type="text"></textarea>
+                </div>
+
+                <div class="brief-form__item">
+                    <label for="fontCase" class="brief-form__label">3. КРИТИЧЕН ЛИ ДЛЯ ВАС ТАКОЙ ПАРАМЕТР КАК РЕГИСТР ШРИФТА В НАЗВАНИИ? <span class="clarification">(должно ли название начинаться с заглавной буквы, состоять только из прописных или только из строчных букв)</span>:*</label>
+                    <input id="fontCase" class="brief-form__input" type="text">
+                </div>
+
+                <div class="brief-form__item">
+                    <label for="slogan" class="brief-form__label">4. ДОПОЛНИТЕЛЬНЫЕ НАДПИСИ, КОТОРЫЕ ДОЛЖНЫ ПРИСУТСТВОВАТЬ В ЛОГОТИПЕ <span class="clarification">(слоган, девиз, расшифровка названия, адрес сайта и т.д.)</span>:</label>
+                    <input id="slogan" class="brief-form__input" type="text">
+                </div>
+
+                <div class="logo-options">
+                    <div class="brief-form__label">6. ПРЕДПОЧИТАЕМЫЙ СТИЛЬ ЛОГОТИПА <span class="clarification">(поставьте отметку в нижнем поле под нужным вам вариантом)</span>:</div>
+                    <div class="logo-options__item">
+                        <label for="onlyFont" class="logo-options__label">Шрифтовый</label>
+                        <input id="onlyFont" name="onlyFont" class="logo-options__input" type="checkbox">
+                    </div>
+                    <div class="logo-options__item">
+                        <label for="logoFont" class="logo-options__label">Знак + шрифт</label>
+                        <input id="logoFont" name="logoFont" class="logo-options__input" type="checkbox">
+                    </div>
+                    <div class="logo-options__item">
+                        <label for="integrated" class="logo-options__label">Интегрированный</label>
+                        <input id="integrated" name="integrated" class="logo-options__input" type="checkbox">
+                    </div>
+                    <div class="logo-options__item">
+                        <label for="cartoon" class="logo-options__label">Мультяшный, Веселый</label>
+                        <input id="cartoon" name="cartoon" class="logo-options__input" type="checkbox">
+                    </div>
+                    <div class="logo-options__item">
+                        <label for="business" class="logo-options__label">Строгий, Деловой</label>
+                        <input id="business" name="business" class="logo-options__input" type="checkbox">
+                    </div>
+                    <div class="logo-options__item">
+                        <label for="dynamic" class="logo-options__label">Динамичный, Яркий</label>
+                        <input id="dynamic" name="dynamic" class="logo-options__input" type="checkbox">
+                    </div>
+                    <div class="logo-options__item">
+                        <label for="dear" class="logo-options__label">Пафосный, дорогой</label>
+                        <input id="dear" name="dear" class="logo-options__input" type="checkbox">
+                    </div>
+                    <div class="logo-options__item">
+                        <label for="vintage" class="logo-options__label">Винтаж, ретро</label>
+                        <input id="vintage" name="vintage" class="logo-options__input" type="checkbox">
+                    </div>
+                    <div class="logo-options__item">
+                        <label for="modern" class="logo-options__label">Модерн, Хай-тек</label>
+                        <input id="modern" name="modern" class="logo-options__input" type="checkbox">
+                    </div>
+                    <div class="logo-options__item">
+                        <label for="gentle" class="logo-options__label">Нежный, Женственный</label>
+                        <input id="gentle" name="gentle" class="logo-options__input" type="checkbox">
+                    </div>
+                    <div class="logo-options__item">
+                        <label for="sports" class="logo-options__label">Спортивный</label>
+                        <input id="sports" name="sports" class="logo-options__input" type="checkbox">
+                    </div>
+                    <div class="logo-options__item">
+                        <label for="other" class="logo-options__label">Что-то другое</label>
+                        <input id="other" name="other" class="logo-options__input" type="checkbox">
+                    </div>
+
+                </div> <!-- .logo-options -->
+                
+            </form>
+
+        </div> <!-- .brief-content -->        
+    </div> <!-- .wrapper -->
+
+    <!-- <div id="printBox">
+        This data to be print
+    </div>
+    <input type="button" value="Print DIV Content" id='printBtn'> -->
+    
+    
+    
+    <!-- <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script> -->
+    <script defer src="index.js"></script>
+</body>
+</html>
