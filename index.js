@@ -1,27 +1,33 @@
 console.log(new Date())
 
 // dom элемент для вывода в pdf
-const printBox = document.getElementById('brief-content')
+const printBox = document.getElementById('wrapper')
 
 // подключение к форме для получения данных
 const briefForm = document.getElementById('brief-form')
 
-const fileName = 'Ecliptic_logo_brief'
+// TODO добавить формирование имени файла от переданного имени компании
+const opt = {
+    filename: 'Cliptic_logo_brief',
+    html2canvas:  { scale: 2 },
+    // TODO настройка разрыва страниц для pdf (трабл!)
+    pagebreak: {
+        mode: ['avoid-all', 'css']
+    },
+    jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+}
 
 briefForm.addEventListener('submit', retrieveFormValue)
 
 function retrieveFormValue(event) {
     event.preventDefault()
 
-    // библиотека через канвас делает скрин и сохраняет его в pdf
-    html2pdf().from(printBox).save(fileName)
-}
+    // удаление стилей перед сохранением pdf
+    // const headMeta = document.querySelector('head')
+    // const metaViewport = document.getElementById('metaViewport')
+    // const linkStyle = document.getElementById('style')
+    // headMeta.removeChild(metaViewport)
 
-function isCkeckboxOrRadio(type) {
-    return ['checkbox', 'radio'].includes(type)
-}
-
-function сreatePDF (text) {
-    doc.text(text, 10, 10)
-    doc.save('a4.pdf')
+    html2pdf().set(opt).from(briefForm).save()
+    // html2pdf().from(printBox).save('Cliptic_logo_brief')
 }
