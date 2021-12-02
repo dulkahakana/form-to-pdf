@@ -16,97 +16,122 @@
 
             <form id="brief-form" class="brief-form__body" action="#" method="post">
 
-                <h1 class="brief-title">Бриф на разработку логотипа</h1>
+                <h1 class="brief-title">БРИФ НА РАЗРАБОТКУ ЛОГОТИПА</h1>
 
                 <div class="brief-form__item">
                     <label for="companyName" class="brief-form__label">1. НАЗВАНИЕ КОМПАНИИ/ПРОДУКТА, КОТОРОЕ ДОЛЖНО
                         БЫТЬ НЕПОСРЕДСТВЕННО ОТРАЖЕНО В ЛОГОТИПЕ <span class="clarification">(уточните, если необходимы
                             варианты и на кириллице, и на латинице)</span>:*</label>
-                    <input name="companyName" class="brief-form__input" type="text">
+                    <input name="companyName" class="brief-form__input" type="text" required value="Quranse">
                 </div>
 
                 <div class="brief-form__item">
                     <label for="aboutCompany" class="brief-form__label">2. ОСНОВНЫЕ НАПРАВЛЕНИЯ ДЕЯТЕЛЬНОСТИ
                         КОМПАНИИ/ОПИСАНИЕ ПРОДУКТА:*</label>
-                    <textarea name="aboutCompany" class="brief-form__input" type="text"></textarea>
+                    <textarea name="aboutCompany" class="brief-form__input" type="text" required maxlength="800"
+                    >Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptate, eveniet illo mollitia quod ducimus commodi optio nam sequi. Qui ipsam assumenda earum ducimus minima nobis aperiam iusto voluptatibus, impedit sit delectus! Perferendis, unde! Quis, veritatis placeat. A laboriosam numquam deserunt non doloribus, accusamus obcaecati vel, sapiente fuga ducimus voluptatem exercitationem? Deserunt, iusto! Ipsum eaque ipsam ex officia nesciunt reprehenderit ducimus, fuga harum soluta quos eos fugit quia tempora iusto quas quidem consequuntur voluptatum hic laboriosam molestiae! Harum at praesentium iste quaerat ipsa adipisci eum quas nihil porro optio modi autem omnis, quibusdam cumque et nam. Dolorem quae amet, ex laudantium iste nemo a. Aliquid, nihil doloremque quae sit provident sed expedita tempore temporibus laboriosam, ex, tenetur harum quia blanditiis. Ipsum.</textarea>
                 </div>
 
                 <div class="brief-form__item">
                     <label for="fontCase" class="brief-form__label">3. КРИТИЧЕН ЛИ ДЛЯ ВАС ТАКОЙ ПАРАМЕТР КАК РЕГИСТР
                         ШРИФТА В НАЗВАНИИ? <span class="clarification">(должно ли название начинаться с заглавной буквы,
                             состоять только из прописных или только из строчных букв)</span>:*</label>
-                    <input name="fontCase" class="brief-form__input" type="text">
+                    <input name="fontCase" class="brief-form__input" type="text" value="нет">
                 </div>
 
                 <div class="brief-form__item">
                     <label for="slogan" class="brief-form__label">4. ДОПОЛНИТЕЛЬНЫЕ НАДПИСИ, КОТОРЫЕ ДОЛЖНЫ
                         ПРИСУТСТВОВАТЬ В ЛОГОТИПЕ <span class="clarification">(слоган, девиз, расшифровка названия,
                             адрес сайта и т.д.)</span>:</label>
-                    <input name="slogan" class="brief-form__input" type="text">
+                    <input name="slogan" class="brief-form__input" type="text" value="Круть">
                 </div>
 
                 <div class="brief-form__item">
-                    <div class="brief-form__label">6. ПРЕДПОЧИТАЕМЫЙ СТИЛЬ ЛОГОТИПА <span
-                            class="clarification">(поставьте отметку в нижнем поле под нужным вам вариантом)</span>:
+                    <div class="brief-form__label">5. ПРЕДПОЧИТАЕМЫЙ ТИП ЛОГОТИПА <span
+                            class="clarification">(поставьте отметку в поле под нужным вам вариантом)</span>:
                     </div>
                     <div class="logo-options__grid">
                         <div class="logo-options__item">
-                            <label for="onlyFont" class="logo-options__label">Шрифтовый</label>
-                            <input name="onlyFont" data="Шрифтовый" class="logo-options__input" type="checkbox">
-                        </div>
+                            <lable for="logo-options" class="logo-options__label">Шрифтовый</lable>
+                            <img src="./src/img/KD-logo.jpg" alt="Шрифтовый">
+                            <input name="logo-options" checked data="Шрифтовый" class="logo-options__input"
+                                type="radio">
+                        </div> <!-- logo-options__item -->
+
                         <div class="logo-options__item">
-                            <label for="logoFont" class="logo-options__label">Знак + шрифт</label>
-                            <input name="logoFont" data="Знак + шрифт" class="logo-options__input" type="checkbox">
-                        </div>
+                            <lable for="logo-options" class="logo-options__label">Знак + шрифт</lable>
+                            <img src="./src/img/KD-logo.jpg" alt="Знак + шрифт">
+                            <input name="logo-options" data="Знак + шрифт" class="logo-options__input" type="radio">
+                        </div> <!-- logo-options__item -->
+
                         <div class="logo-options__item">
-                            <label for="integrated" class="logo-options__label">Интегрированный</label>
-                            <input name="integrated" data="Интегрированный" class="logo-options__input" type="checkbox">
-                        </div>
+                            <lable for="logo-options" class="logo-options__label">Интегрированный</lable>
+                            <img src="./src/img/KD-logo.jpg" alt="Интегрированный">
+                            <input name="logo-options" data="Интегрированный" class="logo-options__input" type="radio">
+                        </div> <!-- logo-options__item -->
+
                         <div class="logo-options__item">
-                            <label for="cartoon" class="logo-options__label">Мультяшный, Веселый</label>
-                            <input name="cartoon" data="Мультяшный, Веселый" class="logo-options__input" type="checkbox">
-                        </div>
+                            <lable for="logo-options" class="logo-options__label">Мультяшный, Веселый</lable>
+                            <img src="./src/img/KD-logo.jpg" alt="Мультяшный, Веселый">
+                            <input name="logo-options" data="Мультяшный, Веселый" class="logo-options__input"
+                                type="radio">
+                        </div> <!-- logo-options__item -->
+
                         <div class="logo-options__item">
-                            <label for="business" class="logo-options__label">Строгий, Деловой</label>
-                            <input name="business" data="Строгий, Деловой" class="logo-options__input" type="checkbox">
-                        </div>
+                            <lable for="logo-options" class="logo-options__label">Строгий, Деловой</lable>
+                            <img src="./src/img/KD-logo.jpg" alt="Строгий, Деловой">
+                            <input name="logo-options" data="Строгий, Деловой" class="logo-options__input" type="radio">
+                        </div> <!-- logo-options__item -->
+
                         <div class="logo-options__item">
-                            <label for="dynamic" class="logo-options__label">Динамичный, Яркий</label>
-                            <input name="dynamic" data="Динамичный, Яркий" class="logo-options__input" type="checkbox">
-                        </div>
+                            <lable for="logo-options" class="logo-options__label">Динамичный, Яркий</lable>
+                            <img src="./src/img/KD-logo.jpg" alt="Динамичный, Яркий">
+                            <input name="logo-options" data="Динамичный, Яркий" class="logo-options__input"
+                                type="radio">
+                        </div> <!-- logo-options__item -->
+
                         <div class="logo-options__item">
-                            <div class="logo-options__title">
-                                <label for="dear" class="logo-options__label">Пафосный, дорогой</label>
-                                <input name="dear" data="Пафосный, дорогой" class="logo-options__input" type="checkbox">
-                            </div>
-                            <div class="logo-options__img">
-                                <img src="./src/img/KD-logo.jpg" alt="Пафосный, дорогой">
-                            </div>
-                        </div>
+                            <lable for="logo-options" class="logo-options__label">Пафосный, дорогой</lable>
+                            <img src="./src/img/KD-logo.jpg" alt="Пафосный, дорогой">
+                            <input name="logo-options" data="Пафосный, дорогой" class="logo-options__input"
+                                type="radio">
+                        </div> <!-- logo-options__item -->
+
                         <div class="logo-options__item">
-                            <label for="vintage" class="logo-options__label">Винтаж, ретро</label>
-                            <input name="vintage" data="Винтаж, ретро" class="logo-options__input" type="checkbox">
-                        </div>
+                            <lable for="logo-options" class="logo-options__label">Винтаж, ретро</lable>
+                            <img src="./src/img/KD-logo.jpg" alt="Винтаж, ретро">
+                            <input name="logo-options" data="Винтаж, ретро" class="logo-options__input" type="radio">
+                        </div> <!-- logo-options__item -->
+
                         <div class="logo-options__item">
-                            <label for="modern" class="logo-options__label">Модерн, Хай-тек</label>
-                            <input name="modern" data="Модерн, Хай-тек" class="logo-options__input" type="checkbox">
-                        </div>
+                            <lable for="logo-options" class="logo-options__label">Модерн, Хай-тек</lable>
+                            <img src="./src/img/KD-logo.jpg" alt="Модерн, Хай-тек">
+                            <input name="logo-options" data="Модерн, Хай-тек" class="logo-options__input" type="radio">
+                        </div> <!-- logo-options__item -->
+
                         <div class="logo-options__item">
-                            <label for="gentle" class="logo-options__label">Нежный, Женственный</label>
-                            <input name="gentle" data="Нежный, Женственный" class="logo-options__input" type="checkbox">
-                        </div>
+                            <lable for="logo-options" class="logo-options__label">Нежный, Женственный</lable>
+                            <img src="./src/img/KD-logo.jpg" alt="Нежный, Женственный">
+                            <input name="logo-options" data="Нежный, Женственный" class="logo-options__input"
+                                type="radio">
+                        </div> <!-- logo-options__item -->
+
                         <div class="logo-options__item">
-                            <label for="sports" class="logo-options__label">Спортивный</label>
-                            <input name="sports" data="Спортивный" class="logo-options__input" type="checkbox">
-                        </div>
+                            <lable for="logo-options" class="logo-options__label">Спортивный</lable>
+                            <img src="./src/img/KD-logo.jpg" alt="Спортивный">
+                            <input name="logo-options" data="Спортивный" class="logo-options__input" type="radio">
+                        </div> <!-- logo-options__item -->
+
                         <div class="logo-options__item">
-                            <label for="other" class="logo-options__label">Что-то другое</label>
-                            <input name="other" data="Что-то другое" class="logo-options__input" type="checkbox">
-                        </div>
+                            <lable for="logo-options" class="logo-options__label">Что-то другое</lable>
+                            <img src="./src/img/KD-logo.jpg" alt="Что-то другое">
+                            <input name="logo-options" data="Что-то другое" class="logo-options__input" type="radio">
+                        </div> <!-- logo-options__item -->
+
                     </div> <!-- .logo-options__grid -->
 
                 </div> <!-- .logo-options -->
-                <button class="savePDF" type="submit">Save PDF</button>
+                <button class="saveBtnPDF" type="submit">Save PDF</button>
             </form>
         </div> <!-- .brief-content -->
     </div> <!-- .wrapper -->
