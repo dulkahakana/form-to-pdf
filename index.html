@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta id="metaViewport" name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Бриф на разработку логотипа</title>
-    <!-- TODO закомментировано до добавления формам стилей, а то их не видно -->
     <link rel="stylesheet" href="./src/styles/dh-normilize.css">
-    <link id="style" rel="stylesheet" href="./src/styles/style.css">    
+    <link id="style" rel="stylesheet" href="./src/styles/style.css">
 </head>
+
 <body>
     <div id="wrapper" class="wrapper">
         <div id="brief-content" class="brief-content">
@@ -18,88 +19,107 @@
                 <h1 class="brief-title">Бриф на разработку логотипа</h1>
 
                 <div class="brief-form__item">
-                    <label for="companyName" class="brief-form__label">1. НАЗВАНИЕ КОМПАНИИ/ПРОДУКТА, КОТОРОЕ ДОЛЖНО БЫТЬ НЕПОСРЕДСТВЕННО ОТРАЖЕНО В ЛОГОТИПЕ <span class="clarification">(уточните, если необходимы варианты и на кириллице, и на латинице)</span>:*</label>
-                    <input  name="companyName" class="brief-form__input" type="text">
+                    <label for="companyName" class="brief-form__label">1. НАЗВАНИЕ КОМПАНИИ/ПРОДУКТА, КОТОРОЕ ДОЛЖНО
+                        БЫТЬ НЕПОСРЕДСТВЕННО ОТРАЖЕНО В ЛОГОТИПЕ <span class="clarification">(уточните, если необходимы
+                            варианты и на кириллице, и на латинице)</span>:*</label>
+                    <input name="companyName" class="brief-form__input" type="text">
                 </div>
 
                 <div class="brief-form__item">
-                    <label for="aboutCompany" class="brief-form__label">2. ОСНОВНЫЕ НАПРАВЛЕНИЯ ДЕЯТЕЛЬНОСТИ КОМПАНИИ/ОПИСАНИЕ ПРОДУКТА:*</label>
+                    <label for="aboutCompany" class="brief-form__label">2. ОСНОВНЫЕ НАПРАВЛЕНИЯ ДЕЯТЕЛЬНОСТИ
+                        КОМПАНИИ/ОПИСАНИЕ ПРОДУКТА:*</label>
                     <textarea name="aboutCompany" class="brief-form__input" type="text"></textarea>
                 </div>
 
                 <div class="brief-form__item">
-                    <label for="fontCase" class="brief-form__label">3. КРИТИЧЕН ЛИ ДЛЯ ВАС ТАКОЙ ПАРАМЕТР КАК РЕГИСТР ШРИФТА В НАЗВАНИИ? <span class="clarification">(должно ли название начинаться с заглавной буквы, состоять только из прописных или только из строчных букв)</span>:*</label>
+                    <label for="fontCase" class="brief-form__label">3. КРИТИЧЕН ЛИ ДЛЯ ВАС ТАКОЙ ПАРАМЕТР КАК РЕГИСТР
+                        ШРИФТА В НАЗВАНИИ? <span class="clarification">(должно ли название начинаться с заглавной буквы,
+                            состоять только из прописных или только из строчных букв)</span>:*</label>
                     <input name="fontCase" class="brief-form__input" type="text">
                 </div>
 
                 <div class="brief-form__item">
-                    <label for="slogan" class="brief-form__label">4. ДОПОЛНИТЕЛЬНЫЕ НАДПИСИ, КОТОРЫЕ ДОЛЖНЫ ПРИСУТСТВОВАТЬ В ЛОГОТИПЕ <span class="clarification">(слоган, девиз, расшифровка названия, адрес сайта и т.д.)</span>:</label>
+                    <label for="slogan" class="brief-form__label">4. ДОПОЛНИТЕЛЬНЫЕ НАДПИСИ, КОТОРЫЕ ДОЛЖНЫ
+                        ПРИСУТСТВОВАТЬ В ЛОГОТИПЕ <span class="clarification">(слоган, девиз, расшифровка названия,
+                            адрес сайта и т.д.)</span>:</label>
                     <input name="slogan" class="brief-form__input" type="text">
                 </div>
 
-                <div class="logo-options">
-                    <div class="brief-form__label">6. ПРЕДПОЧИТАЕМЫЙ СТИЛЬ ЛОГОТИПА <span class="clarification">(поставьте отметку в нижнем поле под нужным вам вариантом)</span>:</div>
-                    <div class="logo-options__item">
-                        <label for="onlyFont" class="logo-options__label">Шрифтовый</label>
-                        <input name="onlyFont" class="logo-options__input" type="checkbox">
+                <div class="brief-form__item">
+                    <div class="brief-form__label">6. ПРЕДПОЧИТАЕМЫЙ СТИЛЬ ЛОГОТИПА <span
+                            class="clarification">(поставьте отметку в нижнем поле под нужным вам вариантом)</span>:
                     </div>
-                    <div class="logo-options__item">
-                        <label for="logoFont" class="logo-options__label">Знак + шрифт</label>
-                        <input name="logoFont" class="logo-options__input" type="checkbox">
-                    </div>
-                    <div class="logo-options__item">
-                        <label for="integrated" class="logo-options__label">Интегрированный</label>
-                        <input name="integrated" class="logo-options__input" type="checkbox">
-                    </div>
-                    <div class="logo-options__item">
-                        <label for="cartoon" class="logo-options__label">Мультяшный, Веселый</label>
-                        <input name="cartoon" class="logo-options__input" type="checkbox">
-                    </div>
-                    <div class="logo-options__item">
-                        <label for="business" class="logo-options__label">Строгий, Деловой</label>
-                        <input name="business" class="logo-options__input" type="checkbox">
-                    </div>
-                    <div class="logo-options__item">
-                        <label for="dynamic" class="logo-options__label">Динамичный, Яркий</label>
-                        <input name="dynamic" class="logo-options__input" type="checkbox">
-                    </div>
-                    <div class="logo-options__item">
-                        <label for="dear" class="logo-options__label">Пафосный, дорогой</label>
-                        <div class="logo-options__img">
-                            <img src="./src/img/KD-logo.jpg" alt="Пафосный, дорогой">
+                    <div class="logo-options__grid">
+                        <div class="logo-options__item">
+                            <label for="onlyFont" class="logo-options__label">Шрифтовый</label>
+                            <input name="onlyFont" data="Шрифтовый" class="logo-options__input" type="checkbox">
                         </div>
-                        <input name="dear" class="logo-options__input" type="checkbox">
-                    </div>
-                    <div class="logo-options__item">
-                        <label for="vintage" class="logo-options__label">Винтаж, ретро</label>
-                        <input name="vintage" class="logo-options__input" type="checkbox">
-                    </div>
-                    <div class="logo-options__item">
-                        <label for="modern" class="logo-options__label">Модерн, Хай-тек</label>
-                        <input name="modern" class="logo-options__input" type="checkbox">
-                    </div>
-                    <div class="logo-options__item">
-                        <label for="gentle" class="logo-options__label">Нежный, Женственный</label>
-                        <input name="gentle" class="logo-options__input" type="checkbox">
-                    </div>
-                    <div class="logo-options__item">
-                        <label for="sports" class="logo-options__label">Спортивный</label>
-                        <input name="sports" class="logo-options__input" type="checkbox">
-                    </div>
-                    <div class="logo-options__item">
-                        <label for="other" class="logo-options__label">Что-то другое</label>
-                        <input name="other" class="logo-options__input" type="checkbox">
-                    </div>
+                        <div class="logo-options__item">
+                            <label for="logoFont" class="logo-options__label">Знак + шрифт</label>
+                            <input name="logoFont" data="Знак + шрифт" class="logo-options__input" type="checkbox">
+                        </div>
+                        <div class="logo-options__item">
+                            <label for="integrated" class="logo-options__label">Интегрированный</label>
+                            <input name="integrated" data="Интегрированный" class="logo-options__input" type="checkbox">
+                        </div>
+                        <div class="logo-options__item">
+                            <label for="cartoon" class="logo-options__label">Мультяшный, Веселый</label>
+                            <input name="cartoon" data="Мультяшный, Веселый" class="logo-options__input" type="checkbox">
+                        </div>
+                        <div class="logo-options__item">
+                            <label for="business" class="logo-options__label">Строгий, Деловой</label>
+                            <input name="business" data="Строгий, Деловой" class="logo-options__input" type="checkbox">
+                        </div>
+                        <div class="logo-options__item">
+                            <label for="dynamic" class="logo-options__label">Динамичный, Яркий</label>
+                            <input name="dynamic" data="Динамичный, Яркий" class="logo-options__input" type="checkbox">
+                        </div>
+                        <div class="logo-options__item">
+                            <div class="logo-options__title">
+                                <label for="dear" class="logo-options__label">Пафосный, дорогой</label>
+                                <input name="dear" data="Пафосный, дорогой" class="logo-options__input" type="checkbox">
+                            </div>
+                            <div class="logo-options__img">
+                                <img src="./src/img/KD-logo.jpg" alt="Пафосный, дорогой">
+                            </div>
+                        </div>
+                        <div class="logo-options__item">
+                            <label for="vintage" class="logo-options__label">Винтаж, ретро</label>
+                            <input name="vintage" data="Винтаж, ретро" class="logo-options__input" type="checkbox">
+                        </div>
+                        <div class="logo-options__item">
+                            <label for="modern" class="logo-options__label">Модерн, Хай-тек</label>
+                            <input name="modern" data="Модерн, Хай-тек" class="logo-options__input" type="checkbox">
+                        </div>
+                        <div class="logo-options__item">
+                            <label for="gentle" class="logo-options__label">Нежный, Женственный</label>
+                            <input name="gentle" data="Нежный, Женственный" class="logo-options__input" type="checkbox">
+                        </div>
+                        <div class="logo-options__item">
+                            <label for="sports" class="logo-options__label">Спортивный</label>
+                            <input name="sports" data="Спортивный" class="logo-options__input" type="checkbox">
+                        </div>
+                        <div class="logo-options__item">
+                            <label for="other" class="logo-options__label">Что-то другое</label>
+                            <input name="other" data="Что-то другое" class="logo-options__input" type="checkbox">
+                        </div>
+                    </div> <!-- .logo-options__grid -->
 
                 </div> <!-- .logo-options -->
                 <button class="savePDF" type="submit">Save PDF</button>
             </form>
-        </div> <!-- .brief-content -->        
-    </div> <!-- .wrapper -->    
-    
+        </div> <!-- .brief-content -->
+    </div> <!-- .wrapper -->
+
     <!-- подключение библиотеки для сохранение в .pdf -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script> -->
+
+    <!-- подключение библиотеки для сохранение в .pdf -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+        integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script defer src="index.js"></script>
 </body>
+
 </html>
