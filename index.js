@@ -8,11 +8,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
     // блок с формой (скрыть перед выводом в pdf)
     const wrapperForm = document.getElementById('wrapper__form')
     // блок с даддыми из формы (показать перед выводом в pdf)
-    const wrapperCaontent = document.getElementById('wrapper__content')
+    const wrapperContent = document.getElementById('wrapper__content')
     // блок, содержимое которого, сохраняется в pdf
     const content = document.getElementById('pdf-content')
     // подключение к форме
     const briefForm = document.getElementById('brief-form')
+    // кнопка возвращающая назад к форме (для возможности изменить введенные данные)
+    // не попадает в pdf
+    const backToForm = document.getElementById('back-to-form')
 
     //? получение размера страницы
     //? let pageWidth = document.documentElement.scrollWidth
@@ -20,61 +23,84 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     // прослушивание собитий
     briefForm.addEventListener('submit', retrieveFormValue)
-    onOffCheckedList('logo-options__item', 'logo-options__input', 'logo-options__item__on')
+    onOffCheckedList('logo-options__item', 'logo-options__input')
+    onOffCheckedList('style-options__item', 'style-options__input')
+
+    backToForm.addEventListener('click', () => {
+        wrapperForm.classList.add('show')
+        wrapperForm.classList.remove('hide')
+
+        wrapperContent.classList.remove('show')
+        wrapperContent.classList.add('hide')
+        content.innerHTML = ''
+    })
 
     // основная функция приложения, которая срабатывает на submit
     // собирает данные с формы => формирует новый блок для вывода => сохраняет в pdf
     function retrieveFormValue(event) {
         // отключение стандратного поведентия у события
         event.preventDefault()
+
+        wrapperForm.classList.add('hide')
+        wrapperForm.classList.remove('show')
+        // wrapperForm.classList.toggle('show')
+
+        // wrapperContent.classList.toggle('hide')
+        wrapperContent.classList.remove('hide')
+        wrapperContent.classList.add('show')
         
         //? test log
         console.log('sumbit')
 
         const fields = document.querySelectorAll('input, textarea')
         const data = {}
-
-
+        
         const optionsLogo = document.querySelectorAll('.logo-options__input')
+        const stylesLogo = document.querySelectorAll('.style-options__input')
 
-        function getTrueChecked(optionsLogo) {
-            const result = []
-            for (option of optionsLogo) {
+        // TODO нужно чтобы картинки формировала
+        function getTrueChecked(checkedList) {
+            // const result = []
+            const trueOptionsItem = createElement('div', 'options-container')
+            for (option of checkedList) {
                 if (option.checked) {
-                    result.push(option.getAttribute('data'))
+                    const optionsItem = createElement('div', 'options-item')
+                    const elem = option.parentNode
+                    const imgElem = elem.querySelector('img')
+                    const labelElem = elem.querySelector('label')
+                    // TODO элементы не копируются а забираются с формы
+                    optionsItem.appendChild(labelElem).cloneNode(true)
+                    optionsItem.appendChild(imgElem).cloneNode(true)
+                    trueOptionsItem.appendChild(optionsItem)
+
+                    // console.log(imgElem, labelElem)
+                    // result.push(option.getAttribute('data'))
                 }
             }
-            return result.join(', ')
-        }   
+            // return result.join(', ')
+            return trueOptionsItem
+        }
+        
+        
 
         // console.log(optionsLogo)
 
         fields.forEach(field => {
             const { name, value, type, checked } = field
             data[name] = isCkeckboxOrRadio(type) ? checked : value;
-        })
-        // TODO не верный подход, нужно делать через убрать показать блок
-        // TODO чтобы была возможность изменить данные в идеале все сохранить в локал storage
-        // content.innerHTML = ''
-        briefForm.classList.add('hide')
-        content.classList.add('show')
+        })       
 
-        // content.classList.remove('brief-content')
-        // content.classList.add('brief-content__pdf')
 
         const title = createElement('div', 'brief-title')
         title.textContent = `Бриф на разработку логотипа ${data.companyName}`
         content.appendChild(title)
-        // TODO реализовать кнопку назад вне элемента контент content возвращающую форму
         // формирование dom с данными из формы для вывода в pdf    
         createBriefItem(content, '1. НАЗВАНИЕ КОМПАНИИ/ПРОДУКТА, КОТОРОЕ ДОЛЖНО БЫТЬ НЕПОСРЕДСТВЕННО ОТРАЖЕНО В ЛОГОТИПЕ:', data.companyName)
         createBriefItem(content, '2. ОСНОВНЫЕ НАПРАВЛЕНИЯ ДЕЯТЕЛЬНОСТИ КОМПАНИИ/ОПИСАНИЕ ПРОДУКТА:', data.aboutCompany)
-        createBriefItem(content, '2. ОСНОВНЫЕ НАПРАВЛЕНИЯ ДЕЯТЕЛЬНОСТИ КОМПАНИИ/ОПИСАНИЕ ПРОДУКТА:', data.aboutCompany)
-        createBriefItem(content, '2. ОСНОВНЫЕ НАПРАВЛЕНИЯ ДЕЯТЕЛЬНОСТИ КОМПАНИИ/ОПИСАНИЕ ПРОДУКТА:', data.aboutCompany)
-        createBriefItem(content, '2. ОСНОВНЫЕ НАПРАВЛЕНИЯ ДЕЯТЕЛЬНОСТИ КОМПАНИИ/ОПИСАНИЕ ПРОДУКТА:', data.aboutCompany)
         createBriefItem(content, '3. КРИТИЧЕН ЛИ ДЛЯ ВАС ТАКОЙ ПАРАМЕТР КАК РЕГИСТР ШРИФТА В НАЗВАНИИ:', data.fontCase)
         createBriefItem(content, '4. ДОПОЛНИТЕЛЬНЫЕ НАДПИСИ, КОТОРЫЕ ДОЛЖНЫ ПРИСУТСТВОВАТЬ В ЛОГОТИПЕ', data.slogan)
-        createBriefItem(content, '6. ПРЕДПОЧИТАЕМЫЙ СТИЛЬ ЛОГОТИПА:', getTrueChecked(optionsLogo))
+        createBriefItem(content, '6. ПРЕДПОЧИТАЕМЫЙ ТИП ЛОГОТИПА:', getTrueChecked(optionsLogo))
+        createBriefItem(content, '7. ПРЕДПОЧИТАЕМЫЙ СТИЛЬ ЛОГОТИПА:', getTrueChecked(stylesLogo))
 
         const backButton = createElement('button', 'back-to-form')
 
@@ -124,12 +150,23 @@ document.addEventListener("DOMContentLoaded", function(event) {
     function createBriefItem(dadElement, text, formValue, classItem = 'brief-form__item', classContent = 'brief-form__label') {
         const briefItem = createElement('div', classItem)
         const itemContent = createElement('div', classContent)
-        const itemFormValue = createElement('span', 'form-value')
-        itemFormValue.textContent = formValue
-        itemContent.textContent = ` ${text}`
+        const itemFormValue = createElement('div', 'form-value')
+
+        if (typeof formValue === 'string') {
+            itemFormValue.textContent = formValue
+        } else {
+            itemFormValue.appendChild(formValue)            
+        }
+        
+        
+        itemContent.textContent = `${text}`
         itemContent.appendChild(itemFormValue)
         briefItem.appendChild(itemContent)
         dadElement.appendChild(briefItem)
+    }
+
+    function getTruCheckedsElems(checketList) {
+
     }
 
     // создаем dom элемент с классом
@@ -139,35 +176,32 @@ document.addEventListener("DOMContentLoaded", function(event) {
         return element
     }
 
+    
+
     // навешивает событие click на блок targetClassName с radio/checkbox исключая наложенные сверху блоки exceptionClassName
     function onOffCheckedList(targetClassName, inputClassName, onClassName = '') {
         const elems = document.querySelectorAll(`.${targetClassName}`)
         for (item of elems) {
-            item.addEventListener('click', (event) => {
-                // onOffClass(elems, onClassName)
+            item.addEventListener('click', (event) => {                
+                
                 if (event.target.className === targetClassName) {
+
                     const elem = event.target
-                    elem.querySelector(`.${inputClassName}`).checked = true
-                    console.log(elem)
-                    // elem.classList.toggle(onClassName)
-                } else {
+                    let elemInput = elem.querySelector(`.${inputClassName}`)
+                    elemInput.checked ? elemInput.checked = false : elemInput.checked = true
+                    
+                } else if (event.target.className !== targetClassName && event.target.className !== inputClassName) {
+
                     const elem = event.target.parentNode
-                    elem.querySelector(`.${inputClassName}`).checked = true
-                    // проверяем на совпадение 
+                    let elemInput = elem.querySelector(`.${inputClassName}`)
+                    elemInput.checked ? elemInput.checked = false : elemInput.checked = true
+
+                    // проверяем на совпадение для открытия доп полей формы
                     if (elem.querySelector('.logo-options__label').textContent === 'Интегрированный' || elem.querySelector('.logo-options__label').textContent === 'Знак + шрифт') {
                         console.log(elem.querySelector('.logo-options__label').textContent)
                     }
-                    // elem.classList.toggle(onClassName)
                 }
             })
         }
     }
-
-    // function onOffClass(elems, onClassName) {   
-    //     for (elem of elems) {
-    //         if (!elem.querySelector('input').checked) elem.classList.remove(onClassName)
-    //     }
-    //     console.log('onOffClass')
-    // }
-
 }); /* DOMContentLoaded */
