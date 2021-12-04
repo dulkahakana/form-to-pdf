@@ -47,8 +47,8 @@ body {
 }
 
 .brief-form__item {
-    /* page-break-before: auto; */
-    break-before: avoid;
+    /* break-before: avoid; */
+    break-inside: avoid;
 
     margin-bottom: 0.3em;
     padding: 0.3em;
@@ -190,11 +190,15 @@ img {
     border-radius: 0.4em;
 }
 
-.hide-element {
+/** PRINT PDF  */
+
+.hide {
     display: none;
 }
 
-/** PRINT PDF  */
+.show {
+    display: block;
+}
 
 .form-value {
     display: block;
@@ -205,6 +209,20 @@ img {
     font-weight: normal;
     background-color: rgb(250, 250, 250);
 }
+
+.brief-content__pdf {
+    width: 1000px;
+    margin: 0 auto;
+    padding: 0 0.5em;
+    line-height: 1.3;
+}
+
+@media (min-width: 560px) {
+    .brief-content__pdf {
+        max-width: 1000px;
+    }
+}
+
 
 
 

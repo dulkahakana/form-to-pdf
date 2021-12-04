@@ -1,5 +1,3 @@
 console.log(new Date() + '\n' + 'test.js is runing')
 
-const str = `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptate, eveniet illo mollitia quod ducimus commodi optio nam sequi. Qui ipsam assumenda earum ducimus minima nobis aperiam iusto voluptatibus, impedit sit delectus! Perferendis, unde! Quis, veritatis placeat. A laboriosam numquam deserunt non doloribus, accusamus obcaecati vel, sapiente fuga ducimus voluptatem exercitationem? Deserunt, iusto! Ipsum eaque ipsam ex officia nesciunt reprehenderit ducimus, fuga harum soluta quos eos fugit quia tempora iusto quas quidem consequuntur voluptatum hic laboriosam molestiae! Harum at praesentium iste quaerat ipsa adipisci eum quas nihil porro optio modi autem omnis, quibusdam cumque et nam. Dolorem quae amet, ex laudantium iste nemo a. Aliquid, nihil doloremque quae sit provident sed expedita tempore temporibus laboriosam, ex, tenetur harum quia blanditiis. Ipsum.`
 
-console.log(str.length)

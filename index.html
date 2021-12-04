@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <div id="wrapper" class="wrapper">
+    <div id="wrapper__form" class="wrapper">
         <div id="brief-content" class="brief-content">
 
             <form id="brief-form" class="brief-form__body" action="#" method="post">
@@ -133,8 +133,11 @@
                 </div> <!-- .logo-options -->
                 <button class="saveBtnPDF" type="submit">Save PDF</button>
             </form>
-        </div> <!-- .brief-content -->
-    </div> <!-- .wrapper -->
+        </div> <!-- .brief-content -->        
+    </div> <!-- .wrapper__form -->
+    <div id="wrapper__content" class="wrapper">
+        <div id="pdf-content" class="brief-content__pdf hide"></div>
+    </div>
 
     <!-- подключение библиотеки для сохранение в .pdf -->
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script> -->
@@ -145,6 +148,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script defer src="index.js"></script>
+    <!-- <script defer src="test.js"></script> -->
 </body>
 
 </html>
