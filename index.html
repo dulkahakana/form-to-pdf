@@ -21,34 +21,33 @@
                 <div class="brief-form__item">
                     <label for="companyName" class="brief-form__label">1. НАЗВАНИЕ КОМПАНИИ/ПРОДУКТА, КОТОРОЕ ДОЛЖНО
                         БЫТЬ НЕПОСРЕДСТВЕННО ОТРАЖЕНО В ЛОГОТИПЕ <span class="clarification">(уточните, если необходимы
-                            варианты и на кириллице, и на латинице)</span>:*</label>
-                    <input name="companyName" class="brief-form__input" type="text" required value="Quranse">
+                            варианты и на кириллице, и на латинице)</span>:</label>
+                    <input name="companyName" class="brief-form__input" type="text" required  placeholder="название комании/продукта">
                 </div>
 
                 <div class="brief-form__item">
                     <label for="aboutCompany" class="brief-form__label">2. ОСНОВНЫЕ НАПРАВЛЕНИЯ ДЕЯТЕЛЬНОСТИ
                         КОМПАНИИ/ОПИСАНИЕ ПРОДУКТА:*</label>
-                    <textarea name="aboutCompany" class="brief-form__input" type="text" required
-                        maxlength="800">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptate, eveniet illo mollitia quod ducimus commodi optio nam sequi. Qui ipsam assumenda earum ducimus minima nobis aperiam iusto voluptatibus, impedit sit delectus! Perferendis, unde! Quis, veritatis placeat. A laboriosam numquam deserunt non doloribus, accusamus obcaecati vel, sapiente fuga ducimus voluptatem exercitationem? Deserunt, iusto! Ipsum eaque ipsam ex officia nesciunt reprehenderit ducimus, fuga harum soluta quos eos fugit quia tempora iusto quas quidem consequuntur voluptatum hic laboriosam molestiae! Harum at praesentium iste quaerat ipsa adipisci eum quas nihil porro optio modi autem omnis, quibusdam cumque et nam. Dolorem quae amet, ex laudantium iste nemo a. Aliquid, nihil doloremque quae sit provident sed expedita tempore temporibus laboriosam, ex, tenetur harum quia blanditiis. Ipsum.</textarea>
+                    <textarea name="aboutCompany" class="brief-form__input" type="text" required maxlength="800" placeholder="описание компании/продукта"></textarea>
                 </div>
 
                 <div class="brief-form__item">
                     <label for="appointment" class="brief-form__label">3. ГДЕ БУДЕТ ИСПОЛЬЗОВАТЬСЯ ЛОГОТИП <span class="clarification">(Укажите, носители, на которых вы планируете использовать логотип. Фирменная полиграфия, сайт, аватары в соцсетях, этикетка, упаковка и т.д.)</span>:</label>
-                    <input name="appointment" class="brief-form__input" type="text" value="сайт и приложение">
+                    <input name="appointment" class="brief-form__input" type="text" placeholder="где будет использоваться логотип">
                 </div>
 
                 <div class="brief-form__item">
                     <label for="fontCase" class="brief-form__label">4. КРИТИЧЕН ЛИ ДЛЯ ВАС ТАКОЙ ПАРАМЕТР КАК РЕГИСТР
                         ШРИФТА В НАЗВАНИИ? <span class="clarification">(должно ли название начинаться с заглавной буквы,
                             состоять только из прописных или только из строчных букв)</span>:*</label>
-                    <input name="fontCase" class="brief-form__input" type="text" value="нет">
+                    <input name="fontCase" class="brief-form__input" type="text" placeholder="регистр шрифта">
                 </div>
 
                 <div class="brief-form__item">
                     <label for="slogan" class="brief-form__label">5. ДОПОЛНИТЕЛЬНЫЕ НАДПИСИ, КОТОРЫЕ ДОЛЖНЫ
                         ПРИСУТСТВОВАТЬ В ЛОГОТИПЕ <span class="clarification">(слоган, девиз, расшифровка названия,
                             адрес сайта и т.д.)</span>:</label>
-                    <input name="slogan" class="brief-form__input" type="text" value="Круть">
+                    <input name="slogan" class="brief-form__input" type="text" placeholder="дополнительные надписи">
                 </div>
 
                 <div class="brief-form__item">
@@ -165,7 +164,7 @@
 
 
 
-                <button class="btn" type="submit">Save PDF</button>
+                <button class="btn" type="submit">сохранить бриф</button>
             </form>
         </div> <!-- .brief-content -->
         <footer class="footer"></footer>
@@ -174,7 +173,7 @@
         <div id="pdf-content" class="brief-content__pdf">
             <!--* данные для pdf -->
         </div>
-        <button id="back-to-form" class="btn">Вернуться к редактированию</button>
+        <button id="back-to-form" class="btn">вернуться к редактированию</button>
         <footer class="footer"></footer>
     </div> <!-- .wrapper__content -->
 
