@@ -25,7 +25,9 @@ document.addEventListener("DOMContentLoaded", () => {
     briefForm.addEventListener('submit', retrieveFormValue)
     onOffCheckedList('logo-options__item', 'logo-options__input')
     onOffCheckedList('style-options__item', 'style-options__input')
-    onOffCheckedList('icon-type__item', 'icon-type__input')
+    onOffCheckedList('icon-options__item', 'icon-options__input')
+    onOffCheckedList('preferred-style-options__item', 'preferred-style-options__input')
+    onOffCheckedList('font-options__item', 'font-options__input')
 
     backToForm.addEventListener('click', () => {
         wrapperForm.classList.add('show')
@@ -56,8 +58,12 @@ document.addEventListener("DOMContentLoaded", () => {
         const fields = document.querySelectorAll('input, textarea')
         const data = {}
         
-        const optionsLogo = document.querySelectorAll('.logo-options__input')
-        const stylesLogo = document.querySelectorAll('.style-options__input')
+
+        const logoOptions = document.querySelectorAll('.logo-options__input')
+        const styleOptions = document.querySelectorAll('.style-options__input')
+        const iconOptions = document.querySelectorAll('.icon-options__input')
+        const preferredStyleOptions = document.querySelectorAll('.preferred-style-options__input')
+        const fontOptions = document.querySelectorAll('.font-options__input')
 
         fields.forEach(field => {
             const { name, value, type, checked } = field
@@ -73,8 +79,15 @@ document.addEventListener("DOMContentLoaded", () => {
         createBriefItem('3. ГДЕ БУДЕТ ИСПОЛЬЗОВАТЬСЯ ЛОГОТИП:', data.appointment)
         createBriefItem('4. КРИТИЧЕН ЛИ ДЛЯ ВАС ТАКОЙ ПАРАМЕТР КАК РЕГИСТР ШРИФТА В НАЗВАНИИ:', data.fontCase)
         createBriefItem('5. ДОПОЛНИТЕЛЬНЫЕ НАДПИСИ, КОТОРЫЕ ДОЛЖНЫ ПРИСУТСТВОВАТЬ В ЛОГОТИПЕ', data.slogan)
-        createBriefItem('6. ТИП ЛОГОТИПА:', getTrueChecked(optionsLogo), 'form-value__options')
-        createBriefItem('7. СТИЛЬ ЛОГОТИПА:', getTrueChecked(stylesLogo), 'form-value__options')
+        createBriefItem('6. ТИП ЛОГОТИПА:', getTrueChecked(logoOptions), 'form-value__options')
+        createBriefItem('7. СТИЛЬ ЛОГОТИПА:', getTrueChecked(styleOptions), 'form-value__options')
+
+        // TODO 8, 9 показать только если в 7 пункте выбраны знак или интегрированный
+        createBriefItem('8. ТИП ЗНАКА:', getTrueChecked(iconOptions), 'form-value__options')
+        createBriefItem('9. СТИЛЬ ОФОРМЛЕНИЯ ЗНАКА:', getTrueChecked(preferredStyleOptions), 'form-value__options')
+
+        // TODO в полях где есть возможность выбрать другое нужно сделать text input
+        createBriefItem('10. СТИЛЬ ШРИФТОВОГО РЕШЕНИЯ:', getTrueChecked(fontOptions), 'form-value__options')
         createBriefItem('11. ЦВЕТОВОЕ РЕШЕНИЕ ЛОГОТИПА:', data.colors)
         createBriefItem('12. ХАРАКТЕРИСТИКА ЗНАКА:', data.patternLogo)
         createBriefItem('13. КЛЮЧЕВЫЕ СЛОВА:', data.keywords)
@@ -97,7 +110,8 @@ document.addEventListener("DOMContentLoaded", () => {
             image: { type: 'jpeg', quality: 0.8 },
             html2canvas:  {
                 width: 1080,
-                height: 1524,
+                // height: 1524,
+                height: document.documentElement.scrollHeight,
                 scale: 2,
                 removeContainer: true
             },
@@ -150,6 +164,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (typeof formValue === 'string') {
             itemFormValue.textContent = formValue
         } else {
+            // TODO Здесь формируются блоки с Img 
             itemFormValue.appendChild(formValue)            
         }
         
@@ -160,7 +175,8 @@ document.addEventListener("DOMContentLoaded", () => {
         dadElement.appendChild(briefItem)
     }
 
-    
+    // TODO нет описания функции
+    // TODO нужно выводить по два блока в одну строку
     function getTrueChecked(checkedList) {
         // const result = []
         const trueOptionsItem = createElement('div', 'container__to-pdf')
@@ -168,6 +184,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (option.checked) {
                 const optionsItem = createElement('div', 'item__to-pdf')
                 const elem = option.parentNode
+                // TODO возникает проблема если внутри блока нет тегов img label
                 const imgElem = elem.querySelector('img').cloneNode()
                 const labelElem = elem.querySelector('label').cloneNode(true)                
                 labelElem.classList = ''
@@ -189,6 +206,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     // навешивает событие click на блок targetClassName 
     // для переключения внутри radio/checkbox с классами inputClassName
+    // TODO это все нужно сделать с помощью рекурсии так будет более универсально
     function onOffCheckedList(targetClassName, inputClassName) {
         const elems = document.querySelectorAll(`.${targetClassName}`)
         for (item of elems) {
@@ -216,5 +234,7 @@ document.addEventListener("DOMContentLoaded", () => {
         elemInput.checked ? elemInput.checked = false : elemInput.checked = true
     }
 }); /* DOMContentLoaded */
+
+
 
 
