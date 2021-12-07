@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function(event) {
+document.addEventListener("DOMContentLoaded", () => {
     
     console.log(new Date())
 
@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     // блок с формой (скрыть перед выводом в pdf)
     const wrapperForm = document.getElementById('wrapper__form')
-    // блок с даддыми из формы (показать перед выводом в pdf)
+    // блок с данными из формы (показать перед выводом в pdf)
     const wrapperContent = document.getElementById('wrapper__content')
     // блок, содержимое которого, сохраняется в pdf
     const content = document.getElementById('pdf-content')
@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     briefForm.addEventListener('submit', retrieveFormValue)
     onOffCheckedList('logo-options__item', 'logo-options__input')
     onOffCheckedList('style-options__item', 'style-options__input')
+    onOffCheckedList('icon-type__item', 'icon-type__input')
 
     backToForm.addEventListener('click', () => {
         wrapperForm.classList.add('show')
@@ -72,12 +73,16 @@ document.addEventListener("DOMContentLoaded", function(event) {
         createBriefItem('3. ГДЕ БУДЕТ ИСПОЛЬЗОВАТЬСЯ ЛОГОТИП:', data.appointment)
         createBriefItem('4. КРИТИЧЕН ЛИ ДЛЯ ВАС ТАКОЙ ПАРАМЕТР КАК РЕГИСТР ШРИФТА В НАЗВАНИИ:', data.fontCase)
         createBriefItem('5. ДОПОЛНИТЕЛЬНЫЕ НАДПИСИ, КОТОРЫЕ ДОЛЖНЫ ПРИСУТСТВОВАТЬ В ЛОГОТИПЕ', data.slogan)
-        createBriefItem('6. ПРЕДПОЧИТАЕМЫЙ ТИП ЛОГОТИПА:', getTrueChecked(optionsLogo), 'form-value__options')
-        createBriefItem('7. ПРЕДПОЧИТАЕМЫЙ СТИЛЬ ЛОГОТИПА:', getTrueChecked(stylesLogo), 'form-value__options')
+        createBriefItem('6. ТИП ЛОГОТИПА:', getTrueChecked(optionsLogo), 'form-value__options')
+        createBriefItem('7. СТИЛЬ ЛОГОТИПА:', getTrueChecked(stylesLogo), 'form-value__options')
+        createBriefItem('11. ЦВЕТОВОЕ РЕШЕНИЕ ЛОГОТИПА:', data.colors)
+        createBriefItem('12. ХАРАКТЕРИСТИКА ЗНАКА:', data.patternLogo)
+        createBriefItem('13. КЛЮЧЕВЫЕ СЛОВА:', data.keywords)
+        createBriefItem('14. ДОПОЛНИТЕЛЬНАЯ ИНФОРМАЦИЯ:', data.additionalInfo)
 
-        const backButton = createElement('button', 'back-to-form')
+        
 
-
+        
         // pageWidth = document.documentElement.scrollWidth
         // pageHeight = document.documentElement.scrollHeight
         // console.log('Page size:' + pageWidth + ' x ' + pageHeight)
@@ -99,7 +104,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             pagebreak: { mode: ['avoid-all', 'css', 'legacy'] },
             jsPDF: { 
                 format: 'a4',
-                precision: 16
+                precision: 16,
                 // unit: 'px',
                 // hotfixes: ['px_scaling'],
                 // format: [1240, 1754],
@@ -108,10 +113,20 @@ document.addEventListener("DOMContentLoaded", function(event) {
             }
         }
 
-        // console.log(`opt: ${opt.jsPDF.format[0]} x ${opt.jsPDF.format[1]}`)
-
+        
+        // возвращает блок вывода в pdf в начало страницы
+        // спасает от рассыпания pdf 
+        window.scrollTo(0, 0)
         //* вызов метода для сохранения в pdf
         html2pdf().set(opt).from(content).save()
+
+        // TODO нельзя просто взять и не дождаться выполения печати в pdf (async)
+        // wrapperForm.classList.add('show')
+        // wrapperForm.classList.remove('hide')
+
+        // wrapperContent.classList.remove('show')
+        // wrapperContent.classList.add('hide')
+        // content.innerHTML = ''
     }
 
     // проверка на checkbox и radio
@@ -145,7 +160,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         dadElement.appendChild(briefItem)
     }
 
-    // TODO нужно чтобы картинки формировала
+    
     function getTrueChecked(checkedList) {
         // const result = []
         const trueOptionsItem = createElement('div', 'container__to-pdf')
@@ -154,19 +169,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 const optionsItem = createElement('div', 'item__to-pdf')
                 const elem = option.parentNode
                 const imgElem = elem.querySelector('img').cloneNode()
-                const labelElem = elem.querySelector('label').cloneNode(true)
-                // TODO нужно добавить класс
+                const labelElem = elem.querySelector('label').cloneNode(true)                
                 labelElem.classList = ''
 
                 optionsItem.appendChild(labelElem)
                 optionsItem.appendChild(imgElem)
                 trueOptionsItem.appendChild(optionsItem)
-
-                // console.log(imgElem, labelElem)
-                // result.push(option.getAttribute('data'))
             }
         }
-        // return result.join(', ')
         return trueOptionsItem
     }
 
@@ -176,36 +186,35 @@ document.addEventListener("DOMContentLoaded", function(event) {
         element.className = className
         return element
     }
-
     
-
-    //* onOffCheckedList('logo-options__item', 'logo-options__input')
-    //* onOffCheckedList('style-options__item', 'style-options__input')
-
-    // навешивает событие click на блок targetClassName с radio/checkbox исключая наложенные сверху блоки exceptionClassName
+    // навешивает событие click на блок targetClassName 
+    // для переключения внутри radio/checkbox с классами inputClassName
     function onOffCheckedList(targetClassName, inputClassName) {
         const elems = document.querySelectorAll(`.${targetClassName}`)
         for (item of elems) {
-            item.addEventListener('click', (event) => {                
-                console.log(`event.target.className: ${event.target.className}`)
-                
+            item.addEventListener('click', (event) => {
                 if (event.target.className.includes(targetClassName)) {
                     const elem = event.target
-                    let elemInput = elem.querySelector(`.${inputClassName}`)
-                    elemInput.checked ? elemInput.checked = false : elemInput.checked = true
-                    
-                } else if (!event.target.className.includes(targetClassName) && !event.target.className.includes(inputClassName)) {
-                    
+                    onOffChecked(elem, inputClassName)                    
+                } else if (!event.target.className.includes(targetClassName) && !event.target.className.includes(inputClassName) && event.target.tagName !== 'IMG') {
                     const elem = event.target.parentNode
-                    let elemInput = elem.querySelector(`.${inputClassName}`)
-                    elemInput.checked ? elemInput.checked = false : elemInput.checked = true
-
-                    // проверяем на совпадение для открытия доп полей формы
-                    // if (elem.querySelector('.logo-options__label').textContent === 'Интегрированный' || elem.querySelector('.logo-options__label').textContent === 'Знак + шрифт') {
-                    //     console.log(elem.querySelector('.logo-options__label').textContent)
-                    // }
+                    onOffChecked(elem, inputClassName)
+                } else if (event.target.tagName === 'IMG') {
+                    const divImg = event.target.parentNode
+                    const elem = divImg.parentNode
+                    onOffChecked(elem, inputClassName)
                 }
             })
         }
     }
+
+    // вспомогательная функция для onOffCheckedList
+    // первый аргумент элемент (domNode) в котором находится checkbox
+    // второй агрумент класс checkbox 
+    function onOffChecked (elem, inputClassName) {
+        let elemInput = elem.querySelector(`.${inputClassName}`)
+        elemInput.checked ? elemInput.checked = false : elemInput.checked = true
+    }
 }); /* DOMContentLoaded */
+
+

@@ -22,54 +22,48 @@
                     <label for="companyName" class="brief-form__label">1. НАЗВАНИЕ КОМПАНИИ/ПРОДУКТА, КОТОРОЕ ДОЛЖНО
                         БЫТЬ НЕПОСРЕДСТВЕННО ОТРАЖЕНО В ЛОГОТИПЕ <span class="clarification">(уточните, если необходимы
                             варианты и на кириллице, и на латинице)</span>:</label>
-                    <input name="companyName" class="brief-form__input" type="text" required  placeholder="название комании/продукта">
+                    <input name="companyName" class="brief-form__input" type="text" required maxlength="80" placeholder="название комании/продукта">
                 </div>
 
                 <div class="brief-form__item">
                     <label for="aboutCompany" class="brief-form__label">2. ОСНОВНЫЕ НАПРАВЛЕНИЯ ДЕЯТЕЛЬНОСТИ
                         КОМПАНИИ/ОПИСАНИЕ ПРОДУКТА:*</label>
-                    <textarea name="aboutCompany" class="brief-form__input" type="text" required maxlength="800" placeholder="описание компании/продукта"></textarea>
+                    <textarea name="aboutCompany" class="brief-form__input" type="text" required maxlength="600" placeholder="описание компании/продукта"></textarea>
                 </div>
 
                 <div class="brief-form__item">
                     <label for="appointment" class="brief-form__label">3. ГДЕ БУДЕТ ИСПОЛЬЗОВАТЬСЯ ЛОГОТИП <span class="clarification">(Укажите, носители, на которых вы планируете использовать логотип. Фирменная полиграфия, сайт, аватары в соцсетях, этикетка, упаковка и т.д.)</span>:</label>
-                    <input name="appointment" class="brief-form__input" type="text" placeholder="где будет использоваться логотип">
+                    <input name="appointment" class="brief-form__input" type="text" maxlength="100" placeholder="где будет использоваться логотип">
                 </div>
 
                 <div class="brief-form__item">
-                    <label for="fontCase" class="brief-form__label">4. КРИТИЧЕН ЛИ ДЛЯ ВАС ТАКОЙ ПАРАМЕТР КАК РЕГИСТР
-                        ШРИФТА В НАЗВАНИИ? <span class="clarification">(должно ли название начинаться с заглавной буквы,
-                            состоять только из прописных или только из строчных букв)</span>:*</label>
-                    <input name="fontCase" class="brief-form__input" type="text" placeholder="регистр шрифта">
+                    <label for="fontCase" class="brief-form__label">4. КРИТИЧЕН ЛИ ДЛЯ ВАС ТАКОЙ ПАРАМЕТР КАК РЕГИСТР ШРИФТА В НАЗВАНИИ? <span class="clarification">(должно ли название начинаться с заглавной буквы, состоять только из прописных или только из строчных букв)</span>:*</label>
+                    <input name="fontCase" class="brief-form__input" type="text" maxlength="100" placeholder="регистр шрифта">
                 </div>
 
                 <div class="brief-form__item">
-                    <label for="slogan" class="brief-form__label">5. ДОПОЛНИТЕЛЬНЫЕ НАДПИСИ, КОТОРЫЕ ДОЛЖНЫ
-                        ПРИСУТСТВОВАТЬ В ЛОГОТИПЕ <span class="clarification">(слоган, девиз, расшифровка названия,
-                            адрес сайта и т.д.)</span>:</label>
-                    <input name="slogan" class="brief-form__input" type="text" placeholder="дополнительные надписи">
+                    <label for="slogan" class="brief-form__label">5. ДОПОЛНИТЕЛЬНЫЕ НАДПИСИ, КОТОРЫЕ ДОЛЖНЫ ПРИСУТСТВОВАТЬ В ЛОГОТИПЕ <span class="clarification">(слоган, девиз, расшифровка названия, адрес сайта и т.д.)</span>:</label>
+                    <input name="slogan" class="brief-form__input" type="text" maxlength="100" placeholder="дополнительные надписи">
                 </div>
 
                 <div class="brief-form__item">
-                    <div class="brief-form__label">6. ПРЕДПОЧИТАЕМЫЙ ТИП ЛОГОТИПА <span class="clarification">(поставьте
-                            отметку в поле под нужным вам вариантом)</span>:
-                    </div>
+                    <div class="brief-form__label">6. ПРЕДПОЧИТАЕМЫЙ ТИП ЛОГОТИПА:</div>
                     <div class="options__grid">
                         <div class="logo-options__item options__item">
                             <label for="logo-options" class="logo-options__label options__label">Шрифтовый</label>
-                            <img src="./src/img/KD-logo.jpg" alt="Шрифтовый">
+                            <div class="logo__img"><img src="./src/img/KD-logo.jpg" alt="Шрифтовый"></div>
                             <input name="logo-options" data="Шрифтовый" class="logo-options__input options__input" type="checkbox">
                         </div> <!-- .logo-options__item -->
 
                         <div class="logo-options__item options__item">
                             <label for="logo-options" class="logo-options__label options__label">Знак + шрифт</label>
-                            <img src="./src/img/KD-logo.jpg" alt="Знак + шрифт">
+                            <div class="logo__img"><img src="./src/img/KD-logo.jpg" alt="Знак + шрифт"></div>
                             <input name="logo-options" data="Знак + шрифт" class="logo-options__input options__input" type="checkbox">
                         </div> <!-- .logo-options__item -->
 
                         <div class="logo-options__item options__item">
                             <label for="logo-options" class="logo-options__label options__label">Интегрированный</label>
-                            <img src="./src/img/KD-logo.jpg" alt="Интегрированный">
+                            <div class="logo__img"><img src="./src/img/KD-logo.jpg" alt="Интегрированный"></div>                            
                             <input name="logo-options" data="Интегрированный" class="logo-options__input options__input"
                                 type="checkbox">
                         </div> <!-- .logo-options__item -->                        
@@ -79,90 +73,129 @@
                 </div> <!-- .brief-form__item -->
 
                 <div class="brief-form__item">
-
+                    
                     <div class="brief-form__label">7. ПРЕДПОЧИТАЕМЫЙ СТИЛЬ ЛОГОТИПА:</div>
 
                     <div class="style-options__grid options__grid">
                         
                         <div class="style-options__item options__item">
                             <label for="logo-options" class="logo-options__label options__label">Мультяшный, Веселый</label>
-                            <img src="./src/img/KD-logo.jpg" alt="Мультяшный, Веселый">
+                            <div class="logo__img"><img src="./src/img/KD-logo.jpg" alt="Мультяшный, Веселый"></div>
                             <input name="logo-options" data="Мультяшный, Веселый" class="style-options__input options__input"
                                 type="checkbox">
                         </div> <!-- .logo-options__item -->
 
                         <div class="style-options__item options__item">
                             <label for="logo-options" class="logo-options__label options__label">Строгий, Деловой</label>
-                            <img src="./src/img/KD-logo.jpg" alt="Строгий, Деловой">
+                            <div class="logo__img"><img src="./src/img/KD-logo.jpg" alt="Строгий, Деловой"></div>                            
                             <input name="logo-options" data="Строгий, Деловой" class="style-options__input options__input"
                                 type="checkbox">
                         </div> <!-- .logo-options__item -->
 
                         <div class="style-options__item options__item">
                             <label for="logo-options" class="logo-options__label options__label">Динамичный, Яркий</label>
-                            <img src="./src/img/KD-logo.jpg" alt="Динамичный, Яркий">
+                            <div class="logo__img"><img src="./src/img/KD-logo.jpg" alt="Динамичный, Яркий"></div>                            
                             <input name="logo-options" data="Динамичный, Яркий" class="style-options__input options__input"
                                 type="checkbox">
                         </div> <!-- .logo-options__item -->
 
                         <div class="style-options__item options__item">
                             <label for="logo-options" class="logo-options__label options__label">Пафосный, дорогой</label>
-                            <img src="./src/img/KD-logo.jpg" alt="Пафосный, дорогой">
+                            <div class="logo__img"><img src="./src/img/KD-logo.jpg" alt="Пафосный, дорогой"></div>                            
                             <input name="logo-options" data="Пафосный, дорогой" class="style-options__input options__input"
                                 type="checkbox">
                         </div> <!-- .logo-options__item -->
 
                         <div class="style-options__item options__item">
                             <label for="logo-options" class="logo-options__label options__label">Винтаж, ретро</label>
-                            <img src="./src/img/KD-logo.jpg" alt="Винтаж, ретро">
+                            <div class="logo__img"><img src="./src/img/KD-logo.jpg" alt="Винтаж, ретро"></div>                            
                             <input name="logo-options" data="Винтаж, ретро" class="style-options__input options__input" type="checkbox">
                         </div> <!-- .logo-options__item -->
 
                         <div class="style-options__item options__item">
                             <label for="logo-options" class="logo-options__label options__label">Модерн, Хай-тек</label>
-                            <img src="./src/img/KD-logo.jpg" alt="Модерн, Хай-тек">
+                            <div class="logo__img"><img src="./src/img/KD-logo.jpg" alt="Модерн, Хай-тек"></div>                            
                             <input name="logo-options" data="Модерн, Хай-тек" class="style-options__input options__input"
                                 type="checkbox">
                         </div> <!-- .logo-options__item -->
 
                         <div class="style-options__item options__item">
+                            <div class="logo__img"><img src="./src/img/KD-logo.jpg" alt="Нежный, Женственный"></div>                            
                             <label for="logo-options" class="logo-options__label options__label">Нежный, Женственный</label>
-                            <img src="./src/img/KD-logo.jpg" alt="Нежный, Женственный">
                             <input name="logo-options" data="Нежный, Женственный" class="style-options__input options__input"
                                 type="checkbox">
                         </div> <!-- .logo-options__item -->
 
                         <div class="style-options__item options__item">
+                            <div class="logo__img"><img src="./src/img/KD-logo.jpg" alt="Спортивный"></div>                            
                             <label for="logo-options" class="logo-options__label options__label">Спортивный</label>
-                            <img src="./src/img/KD-logo.jpg" alt="Спортивный">
                             <input name="logo-options" data="Спортивный" class="style-options__input options__input" type="checkbox">
                         </div> <!-- .logo-options__item -->
 
                         <div class="style-options__item options__item">
+                            <div class="logo__img"><img src="./src/img/KD-logo.jpg" alt="Что-то другое"></div>                            
                             <label for="logo-options" class="logo-options__label options__label">Что-то другое</label>
-                            <img src="./src/img/KD-logo.jpg" alt="Что-то другое">
                             <input name="logo-options" data="Что-то другое" class="style-options__input options__input" type="checkbox">
                         </div> <!-- .logo-options__item -->
                     </div> <!-- .style-options__grid -->
 
                 </div> <!-- .brief-form__item -->
 
-                <div class="icon-type-options brief-form__item">
+                
+
+                <div class="brief-form__item">
                     <div class="brief-form__label">8. ЕСЛИ ВЫ ВЫБРАЛИ КОМБИНАЦИЮ «ЗНАК + ШРИФТ» или «ИНТЕГРИРОВАННЫЙ», ВЫБЕРИТЕ ТИП ЗНАКА:</div>
-                    <!-- TODO блок 8. ЕСЛИ ВЫ ВЫБРАЛИ КОМБИНАЦИЮ «ЗНАК + ШРИФТ» или «ИНТЕГРИРОВАННЫЙ», ВЫБЕРИТЕ ТИП ЗНАКА (поставьте отметку напротив нужного варианта): -->
-                </div> <!-- .icon-type-options -->
+                    <div class="options__grid">
+                        <div class="icon-type__item options__item">
+                            <div class="logo__img"><img src="./src/img/KD-logo.jpg" alt="Шрифтовый"></div>
+                            <label for="logo-options" class="logo-options__label options__label">Знак, в основе которого лежит какая-либо геометрическая форма. В основном, такие логотипы не несут смысловой нагрузки, они нейтральны.</label>
+                            <input name="logo-options" data="Шрифтовый" class="icon-type__input options__input" type="checkbox">
+                        </div> <!-- .logo-options__item -->
+
+                        <div class="icon-type__item options__item">
+                            <div class="logo__img"><img src="./src/img/KD-logo.jpg" alt="Знак + шрифт"></div>
+                            <label for="logo-options" class="logo-options__label options__label">Волны, извивания, сложные фигуры. Как правило, такие знаки абстрактны и имеют извилистые формы</label>
+                            <input name="logo-options" data="Знак + шрифт" class="icon-type__input options__input" type="checkbox">
+                        </div> <!-- .logo-options__item -->
+
+                        <div class="icon-type__item options__item">
+                            <div class="logo__img"><img src="./src/img/KD-logo.jpg" alt="Интегрированный"></div>
+                            <label for="logo-options" class="logo-options__label options__label">Знак на основе первых букв от полного названия компании или продукта, аббревиатура, сокращение</label>
+                            <input name="logo-options" data="Интегрированный" class="icon-type__input options__input"
+                                type="checkbox">
+                        </div> <!-- .logo-options__item -->                        
+
+                    </div> <!-- .logo-options__grid -->
+
+                </div> <!-- .brief-form__item -->
 
                 <div class="icon-style-options brief-form__item">
                     <div class="brief-form__label">9. ПРЕДПОЧИТАЕМЫЙ СТИЛЬ ОФОРМЛЕНИЯ ЗНАКА:</div>
-                    <!-- TODO блок 9. ПРЕДПОЧИТАЕМЫЙ СТИЛЬ ОФОРМЛЕНИЯ ЗНАКА (поставьте отметку напротив нужного варианта): -->
                 </div>
 
                 <div class="font-style-options brief-form__item">
                     <div class="brief-form__label">10. СТИЛЬ ШРИФТОВОГО РЕШЕНИЯ:</div>
-                    <!-- TODO блок 10. СТИЛЬ ШРИФТОВОГО РЕШЕНИЯ (поставьте отметку напротив нужного варианта):  -->
                 </div>
 
+                <div class="font-style-options brief-form__item">
+                    <label for="colors" class="brief-form__label">11. ЦВЕТОВОЕ РЕШЕНИЕ ЛОГОТИПА <span class="clarification">(укажите какие цвета вы хотели бы видеть в логотипе, сколько максимум)</span>:</label>
+                    <input name="colors" class="brief-form__input" type="text" required maxlength="100" placeholder="цветовое решение логотипа">
+                </div>
 
+                <div class="brief-form__item">
+                    <label for="patternLogo" class="brief-form__label">12. ХАРАКТЕРИСТИКА ЗНАКА <span class="clarification">(расскажите, каким вы видите свой знаки логотип в целом; может быть, вы уже имеете представление о том, каким он должен быть; расскажите, какие эмоции он должен вызывать, какой смысл доносить, какие образы содержать)</span>:</label>
+                    <textarea name="patternLogo" class="brief-form__input" type="text" maxlength="600" placeholder="характеристики знака"></textarea>
+                </div>
+
+                <div class="font-style-options brief-form__item">
+                    <label for="keywords" class="brief-form__label">13. ДАЙТЕ СПИСОК КЛЮЧЕВЫХ СЛОВ, ОТНОСЯЩИХСЯ К ТЕМЕ ЛОГОТИПА, КОТОРЫЕ МОГУТ ПОМОЧЬ В РАЗРАБОТКЕ:</label>
+                    <input name="keywords" class="brief-form__input" type="text" required maxlength="100" placeholder="ключевые слова">
+                </div>
+
+                <div class="brief-form__item">
+                    <label for="additionalInfo" class="brief-form__label">14. ДОПОЛНИТЕЛЬНАЯ ИНФОРМАЦИЯ <span class="clarification">(ваши пожелания; ссылки, примеры логотипов, которые вам нравятся / не нравятся; любая важная для вас и полезная информация)</span>:</label>
+                    <textarea name="additionalInfo" class="brief-form__input" type="text" maxlength="600" placeholder="дополнительная информация"></textarea>
+                </div>
 
                 <button class="btn" type="submit">сохранить бриф</button>
             </form>
@@ -177,16 +210,13 @@
         <footer class="footer"></footer>
     </div> <!-- .wrapper__content -->
 
-    <!--? подключение библиотеки для сохранение в .pdf -->
-    <!--? <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script> -->
-
     <!-- подключение библиотеки для сохранение в .pdf -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
         integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script defer src="index.js"></script>
-    <!--? <script defer src="test.js"></script> -->
+    <!-- <script defer src="test.js"></script> -->
 </body>
 
 </html>

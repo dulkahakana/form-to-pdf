@@ -15,6 +15,8 @@ body {
     }
 }
 
+
+
 .footer {
     display: block;
     height: 0.6em;
@@ -23,6 +25,7 @@ body {
 .wrapper {
     break-before: avoid;
     margin: 0 auto;
+    /* min-height: 1524px; */
 }
 
 .brief-content {
@@ -33,7 +36,7 @@ body {
 
 @media (min-width: 560px) {
     .brief-content {
-        max-width: 800px;
+        max-width: 1080px;
     }
 }
 
@@ -65,6 +68,7 @@ body {
     .brief-form__item {
         margin-bottom: 0.6em;
         padding: 0.6em;
+        border-radius: 0.6em;
     }
 }
 
@@ -99,13 +103,13 @@ body {
     display: flex;
     height: 100%;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
 
     font-size: 0.9em;
 
     border: 1px solid rgb(117, 117, 117);
-    border-radius: 0.2em;
+    border-radius: 0.5em;
 
     text-align: center;
     background-color: rgb(240, 240, 240);
@@ -113,6 +117,13 @@ body {
     cursor: pointer;
 
     transition: all 0.2s ease-out;
+}
+
+@media (min-width: 560px) {
+    .options__item {
+        border-radius: 1em;
+        /* font-size: 1.2em; */
+    }
 }
 
 .options__item:hover {
@@ -124,14 +135,31 @@ body {
 }
 
 .options__item img {
-    opacity: 95%;
+    width: 100%;
+    height: 100%;
+
+    border-radius: 0.5em 0.5em 0 0;
+
+    object-fit: contain;
+
+    opacity: 95%;    
 }
+
+@media (min-width: 560px) {
+    .options__item img {
+        border-radius: 1em 1em 0 0;
+        /* font-size: 1.2em; */
+    }
+}
+
+
 
 .options__item img:hover {
     opacity: 100%;
 }
 
 .options__label {
+    display: block;
     margin: 0.1em auto;
 }
 
@@ -149,17 +177,12 @@ body {
 }
 
 
-.options__img {
+/* .options__img {
     width: 100%;
     max-width: 120px;
     
-}
+} */
 
-.options__grid img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
 
 /** TEXT INPUT */
 
@@ -218,13 +241,13 @@ body {
         0px 0px 0.5px rgb(117, 117, 117); */
 }
 
-@media (min-width: 560px) {
+/* @media (min-width: 560px) {
     .btn {
-        /* width: 35%; */
-        /* margin: 0 auto 20px auto;
-        margin-bottom: 100px; */
+        width: 35%;
+        margin: 0 auto 20px auto;
+        margin-bottom: 100px;
     }
-}
+} */
 
 
 /** PRINT PDF  */
@@ -262,6 +285,7 @@ body {
 @media (min-width: 560px) {
     .brief-content__pdf {
         max-width: 1050px;
+        /* height: 1524px; */
     }
 }
 
@@ -299,9 +323,6 @@ body {
     padding: 0;
 }
 
-.red {
-    color: rgb(190, 47, 47);
-}
 
 
 

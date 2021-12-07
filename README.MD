@@ -13,17 +13,6 @@ ftp
 
 http://ecliptic.top/
 
-FTP Username: ec.user@ecliptic.top
-
-FTP server: ftp.ecliptic.top
-
-FTP & explicit FTPS port:  21
-
-
-
-bubuka345255
-
-
 это пароль от дефолтного аккаунта:
 
 FTP Username: ecliptic
