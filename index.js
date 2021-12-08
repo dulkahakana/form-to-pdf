@@ -23,11 +23,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // прослушивание собитий
     briefForm.addEventListener('submit', retrieveFormValue)
-    onOffCheckedList('logo-options__item', 'logo-options__input')
-    onOffCheckedList('style-options__item', 'style-options__input')
-    onOffCheckedList('icon-options__item', 'icon-options__input')
-    onOffCheckedList('preferred-style-options__item', 'preferred-style-options__input')
-    onOffCheckedList('font-options__item', 'font-options__input')
+    onOffCard('logo-options__item', 'logo-options__input')
+    // onOffCheckedList('style-options__item', 'style-options__input')
+    // TODO только style-options__item' работает через рекурсию
+    onOffCard('style-options__item', 'style-options__input')
+    onOffCard('icon-options__item', 'icon-options__input')
+    onOffCard('preferred-style-options__item', 'preferred-style-options__input')
+    onOffCard('font-options__item', 'font-options__input')
 
     backToForm.addEventListener('click', () => {
         wrapperForm.classList.add('show')
@@ -39,55 +41,62 @@ document.addEventListener("DOMContentLoaded", () => {
     })
 
     // основная функция приложения, которая срабатывает на submit
-    // собирает данные с формы => формирует новый блок для вывода => сохраняет в pdf
+    // собирает данные с формы => формирует новый блок для вывода в pdf => сохраняет в pdf
     function retrieveFormValue(event) {
         // отключение стандратного поведентия у события
         event.preventDefault()
 
+        // скрывает форму
         wrapperForm.classList.add('hide')
         wrapperForm.classList.remove('show')
-        // wrapperForm.classList.toggle('show')
 
-        // wrapperContent.classList.toggle('hide')
+        // показывает блок для pdf
         wrapperContent.classList.remove('hide')
         wrapperContent.classList.add('show')
-        
-        //? test log
-        console.log('sumbit')
+                
+        // псевдомассив всех input
+        const formInputs = document.querySelectorAll('input, textarea')
 
-        const fields = document.querySelectorAll('input, textarea')
-        const data = {}
-        
-
+        // псевдомассивы для каждой группы checkbox 
         const logoOptions = document.querySelectorAll('.logo-options__input')
         const styleOptions = document.querySelectorAll('.style-options__input')
         const iconOptions = document.querySelectorAll('.icon-options__input')
         const preferredStyleOptions = document.querySelectorAll('.preferred-style-options__input')
         const fontOptions = document.querySelectorAll('.font-options__input')
 
-        fields.forEach(field => {
+        // сохранение данных с формы в объект
+        // используется isCkeckboxOrRadio(type)
+        const data = {}  
+        formInputs.forEach(field => {
             const { name, value, type, checked } = field
+            console.log(type)
             data[name] = isCkeckboxOrRadio(type) ? checked : value;
-        })       
+        })
+        console.log(data)
 
-        const title = createElement('div', 'brief-title')
-        title.textContent = `Бриф на разработку логотипа ${data.companyName}`
+        // формирование dom с данными из формы для вывода в pdf
+        const title = createElement('div', 'brief-title__pdf')
+        title.textContent = `Бриф на разработку логотипа: "${data.companyName}"`
         content.appendChild(title)
-        // формирование dom с данными из формы для вывода в pdf    
+
         createBriefItem('1. НАЗВАНИЕ КОМПАНИИ/ПРОДУКТА, КОТОРОЕ ДОЛЖНО БЫТЬ НЕПОСРЕДСТВЕННО ОТРАЖЕНО В ЛОГОТИПЕ:', data.companyName)
         createBriefItem('2. ОСНОВНЫЕ НАПРАВЛЕНИЯ ДЕЯТЕЛЬНОСТИ КОМПАНИИ/ОПИСАНИЕ ПРОДУКТА:', data.aboutCompany)
         createBriefItem('3. ГДЕ БУДЕТ ИСПОЛЬЗОВАТЬСЯ ЛОГОТИП:', data.appointment)
         createBriefItem('4. КРИТИЧЕН ЛИ ДЛЯ ВАС ТАКОЙ ПАРАМЕТР КАК РЕГИСТР ШРИФТА В НАЗВАНИИ:', data.fontCase)
-        createBriefItem('5. ДОПОЛНИТЕЛЬНЫЕ НАДПИСИ, КОТОРЫЕ ДОЛЖНЫ ПРИСУТСТВОВАТЬ В ЛОГОТИПЕ', data.slogan)
-        createBriefItem('6. ТИП ЛОГОТИПА:', getTrueChecked(logoOptions), 'form-value__options')
-        createBriefItem('7. СТИЛЬ ЛОГОТИПА:', getTrueChecked(styleOptions), 'form-value__options')
-
-        // TODO 8, 9 показать только если в 7 пункте выбраны знак или интегрированный
-        createBriefItem('8. ТИП ЗНАКА:', getTrueChecked(iconOptions), 'form-value__options')
-        createBriefItem('9. СТИЛЬ ОФОРМЛЕНИЯ ЗНАКА:', getTrueChecked(preferredStyleOptions), 'form-value__options')
-
+        createBriefItem('5. ДОПОЛНИТЕЛЬНЫЕ НАДПИСИ, КОТОРЫЕ ДОЛЖНЫ ПРИСУТСТВОВАТЬ В ЛОГОТИПЕ:', data.slogan)
+        
         // TODO в полях где есть возможность выбрать другое нужно сделать text input
-        createBriefItem('10. СТИЛЬ ШРИФТОВОГО РЕШЕНИЯ:', getTrueChecked(fontOptions), 'form-value__options')
+        const groupStyleType = createElement('div', 'group-options__container')  
+        createBriefItem('6. ТИП ЛОГОТИПА:', getTrueChecked(logoOptions), 'form-value__options', groupStyleType)
+        createBriefItem('7. СТИЛЬ ЛОГОТИПА:', getTrueChecked(styleOptions), 'form-value__options', groupStyleType)        
+        createBriefItem('8. ТИП ЗНАКА:', getTrueChecked(iconOptions), 'form-value__options', groupStyleType)
+        content.appendChild(groupStyleType)
+
+        const groupIconFont = createElement('div', 'group-options__container')
+        createBriefItem('9. СТИЛЬ ОФОРМЛЕНИЯ ЗНАКА:', getTrueChecked(preferredStyleOptions), 'form-value__options', groupIconFont)
+        createBriefItem('10. СТИЛЬ ШРИФТОВОГО РЕШЕНИЯ:', getTrueChecked(fontOptions), 'form-value__options', groupIconFont)
+        content.appendChild(groupIconFont)
+
         createBriefItem('11. ЦВЕТОВОЕ РЕШЕНИЕ ЛОГОТИПА:', data.colors)
         createBriefItem('12. ХАРАКТЕРИСТИКА ЗНАКА:', data.patternLogo)
         createBriefItem('13. КЛЮЧЕВЫЕ СЛОВА:', data.keywords)
@@ -109,7 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
             filename: `${data.companyName}_logo_brief_Cliptic`,
             image: { type: 'jpeg', quality: 0.8 },
             html2canvas:  {
-                width: 1080,
+                width: 980,
                 // height: 1524,
                 height: document.documentElement.scrollHeight,
                 scale: 2,
@@ -117,11 +126,11 @@ document.addEventListener("DOMContentLoaded", () => {
             },
             pagebreak: { mode: ['avoid-all', 'css', 'legacy'] },
             jsPDF: { 
-                format: 'a4',
+                // format: 'a4',
                 precision: 16,
-                // unit: 'px',
-                // hotfixes: ['px_scaling'],
-                // format: [1240, 1754],
+                unit: 'px',
+                hotfixes: ['px_scaling'],
+                format: [980, document.documentElement.scrollHeight],
                 // floatPrecision: 16,
                 /* orientation: 'portrait' */
             }
@@ -130,7 +139,8 @@ document.addEventListener("DOMContentLoaded", () => {
         
         // возвращает блок вывода в pdf в начало страницы
         // спасает от рассыпания pdf 
-        window.scrollTo(0, 0)
+        // window.scrollTo(0, 0)
+        title.scrollIntoView(top)
         //* вызов метода для сохранения в pdf
         html2pdf().set(opt).from(content).save()
 
@@ -154,24 +164,24 @@ document.addEventListener("DOMContentLoaded", () => {
         formValue,
         classValue = 'form-value',
         dadElement = content,
-        classItem = 'brief-form__item',
-        classTitle = 'brief-form__label'
+        classItem = 'brief-item__pdf',
+        classTitle = 'item-label__pdf'
     ) {
         const briefItem = createElement('div', classItem)
-        const itemContent = createElement('div', classTitle)
+        const itemTitle = createElement('div', classTitle)
         const itemFormValue = createElement('div', classValue)
+
+        itemTitle.textContent = `${text}`
+        briefItem.appendChild(itemTitle)
 
         if (typeof formValue === 'string') {
             itemFormValue.textContent = formValue
         } else {
             // TODO Здесь формируются блоки с Img 
-            itemFormValue.appendChild(formValue)            
-        }
+            briefItem.appendChild(formValue)            
+        }        
         
-        
-        itemContent.textContent = `${text}`
-        itemContent.appendChild(itemFormValue)
-        briefItem.appendChild(itemContent)
+        briefItem.appendChild(itemFormValue)
         dadElement.appendChild(briefItem)
     }
 
@@ -203,37 +213,61 @@ document.addEventListener("DOMContentLoaded", () => {
         element.className = className
         return element
     }
-    
-    // навешивает событие click на блок targetClassName 
-    // для переключения внутри radio/checkbox с классами inputClassName
-    // TODO это все нужно сделать с помощью рекурсии так будет более универсально
-    function onOffCheckedList(targetClassName, inputClassName) {
+        
+
+    // добавление события на options__input с помощью рекурсии getCheckbox
+    function onOffCard(targetClassName, inputClassName) {
         const elems = document.querySelectorAll(`.${targetClassName}`)
-        for (item of elems) {
-            item.addEventListener('click', (event) => {
-                if (event.target.className.includes(targetClassName)) {
-                    const elem = event.target
-                    onOffChecked(elem, inputClassName)                    
-                } else if (!event.target.className.includes(targetClassName) && !event.target.className.includes(inputClassName) && event.target.tagName !== 'IMG') {
-                    const elem = event.target.parentNode
-                    onOffChecked(elem, inputClassName)
-                } else if (event.target.tagName === 'IMG') {
-                    const divImg = event.target.parentNode
-                    const elem = divImg.parentNode
-                    onOffChecked(elem, inputClassName)
-                }
+        for (elem of elems) {
+            elem.addEventListener('click', (event) => {
+                event.target.tagName !== 'INPUT'
+                    ?   checkboxDad(event.target, targetClassName, inputClassName)
+                    :   f = () => f                
             })
         }
     }
 
-    // вспомогательная функция для onOffCheckedList
-    // первый аргумент элемент (domNode) в котором находится checkbox
-    // второй агрумент класс checkbox 
+    // функция рекурсия в поиске родителя input и запуска вкл/выкл на input
+    function checkboxDad(elem, targetClassName, inputClassName) {
+        if (elem.className.includes(targetClassName)) {
+            onOffChecked(elem, inputClassName)
+        } else {
+            checkboxDad(elem.parentNode, targetClassName, inputClassName)
+        }
+    }
+
+    // вспомогательная функция запускается в checkboxDad 
     function onOffChecked (elem, inputClassName) {
         let elemInput = elem.querySelector(`.${inputClassName}`)
         elemInput.checked ? elemInput.checked = false : elemInput.checked = true
     }
+    
+    // навешивает событие click на блок targetClassName 
+    // для переключения внутри radio/checkbox с классами inputClassName
+    // function onOffCheckedList(targetClassName, inputClassName) {
+    //     const elems = document.querySelectorAll(`.${targetClassName}`)
+    //     for (item of elems) {
+    //         item.addEventListener('click', (event) => {
+    //             if (event.target.className.includes(targetClassName)) {
+    //                 const elem = event.target
+    //                 onOffChecked(elem, inputClassName)                    
+    //             } else if (!event.target.className.includes(targetClassName) && !event.target.className.includes(inputClassName) && event.target.tagName !== 'IMG') {
+    //                 const elem = event.target.parentNode
+    //                 onOffChecked(elem, inputClassName)
+    //             } else if (event.target.tagName === 'IMG') {
+    //                 const divImg = event.target.parentNode
+    //                 const elem = divImg.parentNode
+    //                 onOffChecked(elem, inputClassName)
+    //             }
+    //         })
+    //     }
+    // }
+
+
 }); /* DOMContentLoaded */
+
+
+
 
 
 
