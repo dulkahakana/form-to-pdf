@@ -55,19 +55,19 @@
                         <div class="logo-options__item options__item">
                             <div class="logo__img"><img src="./src/img/KD-logo.jpg" alt="Шрифтовый"></div>
                             <label for="logo-options" class="options__label">Шрифтовый</label>
-                            <input name="logo-options" data="Шрифтовый" class="logo-options__input options__input" type="checkbox">
+                            <input name="logo-options" class="logo-options__input options__input" type="checkbox">
                         </div> <!-- .logo-options__item -->
 
                         <div class="logo-options__item options__item">
                             <div class="logo__img"><img src="./src/img/KD-logo.jpg" alt="Знак + шрифт"></div>
-                            <label for="logo-options" class="options__label">Знак + шрифт</label>
-                            <input name="logo-options" data="icon-options" class="logo-options__input options__input" type="checkbox">
+                            <label for="iconFont" class="options__label">Знак + шрифт</label>
+                            <input id="iconFont" name="iconFont" data="icon-options" class="logo-options__input options__input" type="checkbox">
                         </div> <!-- .logo-options__item -->
 
                         <div class="logo-options__item options__item">
                             <div class="logo__img"><img src="./src/img/KD-logo.jpg" alt="Интегрированный"></div>                            
-                            <label for="logo-options" class="options__label">Интегрированный</label>
-                            <input name="logo-options" data="icon-options" class="logo-options__input options__input"
+                            <label for="integrated" class="options__label">Интегрированный</label>
+                            <input id="integrated" name="integrated" data="icon-options" class="logo-options__input options__input"
                                 type="checkbox">
                         </div> <!-- .logo-options__item -->                        
 
@@ -149,7 +149,7 @@
 
                 
                 
-                <div class="brief-form__item">
+                <div id="typeIconOptions" class="brief-form__item hide">
                     <div class="brief-form__label">8. ЕСЛИ ВЫ ВЫБРАЛИ КОМБИНАЦИЮ «ЗНАК + ШРИФТ» или «ИНТЕГРИРОВАННЫЙ», ВЫБЕРИТЕ ТИП ЗНАКА:</div>
                     <div class="options__grid">
 
@@ -208,7 +208,7 @@
 
                 
 
-                <div class="brief-form__item">
+                <div id="styleIconOptions" class="brief-form__item hide">
                     <div class="brief-form__label">9. ПРЕДПОЧИТАЕМЫЙ СТИЛЬ ОФОРМЛЕНИЯ ЗНАКА:</div>
                     <div class="options__grid">
 

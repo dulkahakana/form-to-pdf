@@ -13,6 +13,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const content = document.getElementById('pdf-content')
     // подключение к форме
     const briefForm = document.getElementById('brief-form')
+    // опция "Знак + шрифт"
+    const iconFontOption = document.getElementById('iconFont')
+    // опция "Интегрированный"
+    const integratedOption = document.getElementById('integrated')
+    // блок с 8. ВЫБЕРИТЕ ТИП ЗНАКА:
+    const typeIconOptions = document.getElementById('typeIconOptions')
+    // блок с 9. ПРЕДПОЧИТАЕМЫЙ СТИЛЬ ОФОРМЛЕНИЯ ЗНАКА:
+    const styleIconOptions = document.getElementById('styleIconOptions')
+
+
     // кнопка возвращающая назад к форме (для возможности изменить введенные данные)
     // не попадает в pdf
     const backToForm = document.getElementById('back-to-form')
@@ -69,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const { name, value, type, checked } = field
             data[name] = isCkeckboxOrRadio(type) ? checked : value;
         })
-        console.log(data)
+        // console.log(data)
 
         // формирование dom с данными из формы для вывода в pdf
         const title = createElement('div', 'brief-title__pdf')
@@ -82,17 +92,22 @@ document.addEventListener("DOMContentLoaded", () => {
         createBriefItem('4. КРИТИЧЕН ЛИ ДЛЯ ВАС ТАКОЙ ПАРАМЕТР КАК РЕГИСТР ШРИФТА В НАЗВАНИИ:', data.fontCase)
         createBriefItem('5. ДОПОЛНИТЕЛЬНЫЕ НАДПИСИ, КОТОРЫЕ ДОЛЖНЫ ПРИСУТСТВОВАТЬ В ЛОГОТИПЕ:', data.slogan)
         
-        const groupStyleType = createElement('div', 'group-options__container')  
+        const groupStyleType = createElement('div', 'group-options__container')
         createBriefItem('6. ТИП ЛОГОТИПА:', getOptionsGroup(logoOptions), 'form-value__options', groupStyleType)
         createBriefItem('7. СТИЛЬ ЛОГОТИПА:', getOptionsGroup(styleOptions), 'form-value__options', groupStyleType)        
         content.appendChild(groupStyleType)
-        
-        createBriefItem('8. ТИП ЗНАКА:', getOptionsGroup(iconOptions), 'form-value__options')
 
-        const groupIconFont = createElement('div', 'group-options__container')
-        createBriefItem('9. СТИЛЬ ОФОРМЛЕНИЯ ЗНАКА:', getOptionsGroup(preferredStyleOptions), 'form-value__options', groupIconFont)
-        createBriefItem('10. СТИЛЬ ШРИФТОВОГО РЕШЕНИЯ:', getOptionsGroup(fontOptions), 'form-value__options', groupIconFont)
-        content.appendChild(groupIconFont)
+        if (typeIconOptions.className.includes('show')) {
+            const groupIconOptions = createElement('div', 'group-options__container')        
+            createBriefItem('8. ТИП ЗНАКА:', getOptionsGroup(iconOptions), 'form-value__options', groupIconOptions)
+            createBriefItem('9. СТИЛЬ ОФОРМЛЕНИЯ ЗНАКА:', getOptionsGroup(preferredStyleOptions), 'form-value__options', groupIconOptions)
+            content.appendChild(groupIconOptions)
+        }
+        
+
+        // const groupIconFont = createElement('div', 'group-options__container')
+        createBriefItem('10. СТИЛЬ ШРИФТОВОГО РЕШЕНИЯ:', getOptionsGroup(fontOptions), 'form-value__options')
+        // content.appendChild(groupIconFont)
 
         createBriefItem('11. ЦВЕТОВОЕ РЕШЕНИЕ ЛОГОТИПА:', data.colors)
         createBriefItem('12. ХАРАКТЕРИСТИКА ЗНАКА:', data.patternLogo)
@@ -196,10 +211,16 @@ document.addEventListener("DOMContentLoaded", () => {
         const elems = document.querySelectorAll(`.${targetClassName}`)
         for (elem of elems) {
             elem.addEventListener('click', (event) => {
-                !event.target.className.includes(inputClassName)
-                    ?   checkboxDad(event.target, targetClassName, inputClassName)
-                    :   f = () => f
-                            
+                const elem = event.target
+                if (!elem.className.includes(inputClassName)) {
+                    checkboxDad(elem, targetClassName, inputClassName)
+                } else if (elem.getAttribute('data') === 'icon-options') {
+                    if (!iconFontOption.checked && !integratedOption.checked) {
+                        hideGroupe(typeIconOptions, styleIconOptions)                    
+                    } else if (iconFontOption.checked || integratedOption.checked) {
+                        showGroupe(typeIconOptions, styleIconOptions)
+                    }
+                }
             })
         }
     }
@@ -207,18 +228,39 @@ document.addEventListener("DOMContentLoaded", () => {
     // функция рекурсия в поиске родителя input и запуска вкл/выкл на input
     function checkboxDad(elem, targetClassName, inputClassName) {
         if (elem.className.includes(targetClassName)) {
-            onOffChecked(elem, inputClassName)
+            const inputElem = elem.querySelector(`.${inputClassName}`)
+            onOffChecked(inputElem)
+            
+            if (inputElem.getAttribute('data') === 'icon-options') {
+                if (!iconFontOption.checked && !integratedOption.checked) {
+                    hideGroupe(typeIconOptions, styleIconOptions)             
+                } else if (iconFontOption.checked || integratedOption.checked) {
+                    showGroupe(typeIconOptions, styleIconOptions)
+                }
+            }
         } else {
             checkboxDad(elem.parentNode, targetClassName, inputClassName)
         }
     }
 
     // вспомогательная функция запускается в checkboxDad 
-    function onOffChecked (elem, inputClassName) {
-        let elemInput = elem.querySelector(`.${inputClassName}`)
-        elemInput.checked ? elemInput.checked = false : elemInput.checked = true
+    function onOffChecked (input) {
+        input.checked ? input.checked = false : input.checked = true
     }
 
+    function hideGroupe(...arr) {
+        for (item of arr) {
+            item.classList.remove('show')
+            item.classList.add('hide')
+        }
+    }
+
+    function showGroupe(...arr) {
+        for (item of arr) {
+            item.classList.remove('hide')
+            item.classList.add('show')
+        }
+    }
 
 }); /* DOMContentLoaded */
 
