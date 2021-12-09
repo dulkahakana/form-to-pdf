@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
     //? let pageWidth = document.documentElement.scrollWidth
     //? let pageHeight = document.documentElement.scrollHeight
 
-    // прослушивание собитий
+    // прослушивание событий
     briefForm.addEventListener('submit', retrieveFormValue)
     onOffCard('logo-options__item', 'logo-options__input')
     onOffCard('style-options__item', 'style-options__input')
@@ -67,7 +67,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const data = {}  
         formInputs.forEach(field => {
             const { name, value, type, checked } = field
-            console.log(type)
             data[name] = isCkeckboxOrRadio(type) ? checked : value;
         })
         console.log(data)
@@ -86,8 +85,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const groupStyleType = createElement('div', 'group-options__container')  
         createBriefItem('6. ТИП ЛОГОТИПА:', getOptionsGroup(logoOptions), 'form-value__options', groupStyleType)
         createBriefItem('7. СТИЛЬ ЛОГОТИПА:', getOptionsGroup(styleOptions), 'form-value__options', groupStyleType)        
-        createBriefItem('8. ТИП ЗНАКА:', getOptionsGroup(iconOptions), 'form-value__options', groupStyleType)
         content.appendChild(groupStyleType)
+        
+        createBriefItem('8. ТИП ЗНАКА:', getOptionsGroup(iconOptions), 'form-value__options')
 
         const groupIconFont = createElement('div', 'group-options__container')
         createBriefItem('9. СТИЛЬ ОФОРМЛЕНИЯ ЗНАКА:', getOptionsGroup(preferredStyleOptions), 'form-value__options', groupIconFont)
@@ -174,6 +174,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const imgElem = elem.querySelector('img').cloneNode()
                 const labelElem = elem.querySelector('label').cloneNode(true)                
                 labelElem.classList = ''
+                labelElem.textContent = `${labelElem.textContent.substr(0, 7)}...`
 
                 optionsItem.appendChild(labelElem)
                 optionsItem.appendChild(imgElem)
@@ -195,9 +196,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const elems = document.querySelectorAll(`.${targetClassName}`)
         for (elem of elems) {
             elem.addEventListener('click', (event) => {
-                event.target.tagName !== 'INPUT'
+                !event.target.className.includes(inputClassName)
                     ?   checkboxDad(event.target, targetClassName, inputClassName)
-                    :   f = () => f                
+                    :   f = () => f
+                            
             })
         }
     }
@@ -216,6 +218,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let elemInput = elem.querySelector(`.${inputClassName}`)
         elemInput.checked ? elemInput.checked = false : elemInput.checked = true
     }
+
 
 }); /* DOMContentLoaded */
 
