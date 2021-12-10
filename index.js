@@ -171,12 +171,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (typeof formValue === 'string') {
             itemFormValue.textContent = formValue
+            briefItem.appendChild(itemFormValue)
+            
         } else {
             briefItem.appendChild(formValue)            
-        }        
+        }
         
-        briefItem.appendChild(itemFormValue)
-        dadElement.appendChild(briefItem)
+        dadElement.appendChild(briefItem)        
     }
 
     // возвращает dom элемент с выбранными опциями
@@ -263,10 +264,3 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 }); /* DOMContentLoaded */
-
-
-
-
-
-
-
