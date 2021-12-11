@@ -139,15 +139,20 @@
 
                         <div class="style-options__item options__item">
                             <div class="logo__img"><img src="./src/img/KD-logo.jpg" alt="Что-то другое"></div>                            
-                            <label for="logo-options" class="options__label">Что-то другое</label>
-                            <input name="logo-options" data="other-style" class="style-options__input options__input" type="checkbox">
+                            <label for="logo-options" class="options__label">Другое</label>
+                            <input id="otherLogoStyle" name="logo-options" data="other-logo-style" class="style-options__input options__input" type="checkbox">
                         </div> <!-- .style-options__item -->
 
-                    </div> <!-- .style-options__grid -->
+                    </div> <!-- .style-options__grid -->                    
 
                 </div> <!-- .brief-form__item -->
 
-                
+
+                <div id="otherLogoStyleInput" class="brief-form__item hide">
+                    <label for="otherStyleText" class="brief-form__label">7. ПРЕДПОЧИТАЕМЫЙ СТИЛЬ ЛОГОТИПА <span class="clarification">(опишите стиль логотипа, который вы хотели бы видеть)</span>:</label>
+                    <input name="otherStyleText" class="brief-form__input" type="text" maxlength="120" placeholder="предпочитаемый стиль логотипа">
+                </div> <!-- .brief-form__item -->
+
                 
                 <div id="typeIconOptions" class="brief-form__item hide">
                     <div class="brief-form__label">8. ЕСЛИ ВЫ ВЫБРАЛИ КОМБИНАЦИЮ «ЗНАК + ШРИФТ» или «ИНТЕГРИРОВАННЫЙ», ВЫБЕРИТЕ ТИП ЗНАКА:</div>
@@ -272,13 +277,20 @@
                         <div class="font-options__item options__item">
                             <div class="logo__img"><img src="./src/img/KD-logo.jpg" alt="Другое"></div>
                             <label for="logo-options" class="options__label">Другое</label>
-                            <p class="options__label">Уточните какого типа шрифт вам нужен – надутый, мультяшный, техно, со скругленными углами и проч</p>
-                            <input name="logo-options" class="font-options__input options__input" type="checkbox">
+                            <input id="otherFontStyle" name="logo-options" data="other-font-style" class="font-options__input options__input" type="checkbox">
                         </div> <!-- font-options__item -->                     
                         
                     </div> <!-- .options__grid -->
 
-                </div> <!-- .brief-form__item -->                
+                </div> <!-- .brief-form__item -->
+
+
+                <div id="otherFontInput" class="brief-form__item hide">
+                    <label for="otherFontStyleText" class="brief-form__label">10. СТИЛЬ ШРИФТОВОГО РЕШЕНИЯ <span class="clarification">(Уточните какого типа шрифт вам нужен – надутый, мультяшный, техно, со скругленными углами и проч)</span>:</label>
+                    <input name="otherFontStyleText" class="brief-form__input" type="text" maxlength="120" placeholder="уточните какого типа шрифт вам нужен">
+                </div> <!-- .brief-form__item -->
+
+
 
                 <div class="font-style-options brief-form__item">
                     <label for="colors" class="brief-form__label">11. ЦВЕТОВОЕ РЕШЕНИЕ ЛОГОТИПА <span class="clarification">(укажите какие цвета вы хотели бы видеть в логотипе, сколько максимум)</span>:</label>

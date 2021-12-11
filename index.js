@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     
-    console.log(new Date())
+    // console.log(new Date())
 
     //? dom элемент для вывода в pdf
     //? const printBox = document.getElementById('brief-content')
@@ -21,15 +21,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const typeIconOptions = document.getElementById('typeIconOptions')
     // блок с 9. ПРЕДПОЧИТАЕМЫЙ СТИЛЬ ОФОРМЛЕНИЯ ЗНАКА:
     const styleIconOptions = document.getElementById('styleIconOptions')
+    // опция другое в блоке 7. ПРЕДПОЧИТАЕМЫЙ СТИЛЬ ЛОГОТИПА:
+    const otherLogoStyle = document.getElementById('otherLogoStyle')
+    // инпут "другое" для блока 7. ПРЕДПОЧИТАЕМЫЙ СТИЛЬ ЛОГОТИПА:
+    const otherStyleInput = document.getElementById('otherLogoStyleInput')
+    // опция "другое" в блоке 10. СТИЛЬ ШРИФТОВОГО РЕШЕНИЯ:
+    const otherFontStyle = document.getElementById('otherFontStyle')
+    // инпут "другое" для блока 10. СТИЛЬ ШРИФТОВОГО РЕШЕНИЯ:
+    const otherFontInput = document.getElementById('otherFontInput')
+    
 
 
     // кнопка возвращающая назад к форме (для возможности изменить введенные данные)
     // не попадает в pdf
     const backToForm = document.getElementById('back-to-form')
-
-    //? получение размера страницы
-    //? let pageWidth = document.documentElement.scrollWidth
-    //? let pageHeight = document.documentElement.scrollHeight
 
     // прослушивание событий
     briefForm.addEventListener('submit', retrieveFormValue)
@@ -97,6 +102,10 @@ document.addEventListener("DOMContentLoaded", () => {
         createBriefItem('7. СТИЛЬ ЛОГОТИПА:', getOptionsGroup(styleOptions), 'form-value__options', groupStyleType)        
         content.appendChild(groupStyleType)
 
+        if (otherStyleInput.className.includes('show')) {
+            createBriefItem('7. СТИЛЬ ЛОГОТИПА, ДРУГОЕ:', data.otherStyleText)
+        }
+
         if (typeIconOptions.className.includes('show')) {
             const groupIconOptions = createElement('div', 'group-options__container')        
             createBriefItem('8. ТИП ЗНАКА:', getOptionsGroup(iconOptions), 'form-value__options', groupIconOptions)
@@ -104,10 +113,11 @@ document.addEventListener("DOMContentLoaded", () => {
             content.appendChild(groupIconOptions)
         }
         
-
-        // const groupIconFont = createElement('div', 'group-options__container')
         createBriefItem('10. СТИЛЬ ШРИФТОВОГО РЕШЕНИЯ:', getOptionsGroup(fontOptions), 'form-value__options')
-        // content.appendChild(groupIconFont)
+
+        if (otherFontInput.className.includes('show')) {
+            createBriefItem('10. СТИЛЬ ШРИФТОВОГО РЕШЕНИЯ, ДРУГОЕ:', data.otherFontStyleText)
+        }
 
         createBriefItem('11. ЦВЕТОВОЕ РЕШЕНИЕ ЛОГОТИПА:', data.colors)
         createBriefItem('12. ХАРАКТЕРИСТИКА ЗНАКА:', data.patternLogo)
@@ -190,7 +200,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 const imgElem = elem.querySelector('img').cloneNode()
                 const labelElem = elem.querySelector('label').cloneNode(true)                
                 labelElem.classList = ''
-                labelElem.textContent = `${labelElem.textContent.substr(0, 7)}...`
+                if (labelElem.textContent.length > 7) {
+                    labelElem.textContent = `${labelElem.textContent.substr(0, 7)}...`
+                } else {
+                    labelElem.textContent = labelElem.textContent
+                }                
 
                 optionsItem.appendChild(labelElem)
                 optionsItem.appendChild(imgElem)
@@ -207,7 +221,9 @@ document.addEventListener("DOMContentLoaded", () => {
         return element
     }        
 
-    // добавление события на options__input с помощью рекурсии getCheckbox
+    // добавление события на карточки options__input с помощью рекурсии getCheckbox
+    // исключает добавление события, если таргетом был сам checkbox
+    // проверяет поле data у input для выполнения условий показа доп полей
     function onOffCard(targetClassName, inputClassName) {
         const elems = document.querySelectorAll(`.${targetClassName}`)
         for (elem of elems) {
@@ -221,6 +237,15 @@ document.addEventListener("DOMContentLoaded", () => {
                     } else if (iconFontOption.checked || integratedOption.checked) {
                         showGroupe(typeIconOptions, styleIconOptions)
                     }
+                } else if (elem.getAttribute('data') === 'other-logo-style') {
+                    otherLogoStyle.checked
+                        ? showGroupe(otherLogoStyleInput)
+                        : hideGroupe(otherLogoStyleInput)                    
+                } else if (elem.getAttribute('data') === 'other-font-style') {
+                    console.log(elem)
+                    otherFontStyle.checked
+                        ? showGroupe(otherFontInput)
+                        : hideGroupe(otherFontInput)
                 }
             })
         }
@@ -238,6 +263,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 } else if (iconFontOption.checked || integratedOption.checked) {
                     showGroupe(typeIconOptions, styleIconOptions)
                 }
+            } else if (inputElem.getAttribute('data') === 'other-logo-style') {
+                console.log(elem)
+                otherLogoStyle.checked
+                    ? showGroupe(otherLogoStyleInput)
+                    : hideGroupe(otherLogoStyleInput)                    
+            } else if (inputElem.getAttribute('data') === 'other-font-style') {
+                otherFontStyle.checked
+                    ? showGroupe(otherFontInput)
+                    : hideGroupe(otherFontInput)
             }
         } else {
             checkboxDad(elem.parentNode, targetClassName, inputClassName)
